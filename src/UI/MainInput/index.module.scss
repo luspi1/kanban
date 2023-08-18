@@ -1,0 +1,13 @@
+.mainInputWrapper {
+  position: relative;
+  margin-bottom: 20px;
+  svg {
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input {
+    padding-left: 30px;
+  }
+}
