@@ -1,6 +1,11 @@
 .columnsList {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+
   li {
+    padding: 10px 10px 10px 20px;
+    border: 1px solid #D0D5DF;
+    border-radius: 3px;
   }
 }
