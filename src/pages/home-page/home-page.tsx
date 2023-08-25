@@ -35,13 +35,13 @@ export const HomePage: FC = () => {
 		const localTasks = tasks
 
 		const searchedTask = localTasks?.find((el) => el.id === result.draggableId)
+		const filteredTasks = localTasks?.filter((el) => el.id !== result.draggableId)
 		const reorderedTask = {
 			...searchedTask,
 			column: Number(result.destination.droppableId),
 		}
 		if (localTasks) {
-			const reorderedTasks: TaskCard[] = [...localTasks, reorderedTask]
-			console.log(reorderedTasks)
+			const reorderedTasks: TaskCard[] = [...filteredTasks, reorderedTask]
 			reorderTasks(reorderedTasks).catch((e) => console.error(e))
 		}
 	}
