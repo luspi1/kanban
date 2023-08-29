@@ -33,6 +33,7 @@ export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
 						</button>
 					</div>
 					<h4>{title}</h4>
+					<p>{index}</p>
 				</div>
 			)}
 		</Draggable>

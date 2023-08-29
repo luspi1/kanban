@@ -6,8 +6,9 @@ export type TaskCard = {
 	column: number
 	status: TaskStatus
 }
-export type Track = {
+
+export type KanbanColumn = {
 	id: string
 	title: string
-	taskCards: TaskCard[]
+	tasks: TaskCard[]
 }

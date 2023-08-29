@@ -8,6 +8,11 @@ export enum TaskStatusMap {
 	common = 'обычный',
 	lower = 'на потом',
 }
+
 export enum ItemType {
 	TASK = 'Task',
+}
+
+export enum NameSpace {
+	Tasks = 'TASKS',
 }

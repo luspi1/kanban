@@ -1,9 +1,9 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { loginActions } from 'src/modules/LoginModal/store/login-slice/login.slice'
+import { tasksActions } from 'src/store/tasks/tasks.slice'
 
 const actions = {
-	...loginActions,
+	...tasksActions,
 }
 export const useActions = () => {
 	const dispatch = useDispatch()

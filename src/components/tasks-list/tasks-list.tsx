@@ -3,6 +3,8 @@ import { type TaskCard } from 'src/types/tracks'
 import { TaskItem } from 'src/components/task-item/task-item'
 import { Droppable } from 'react-beautiful-dnd'
 
+import styles from './index.module.scss'
+
 type TasksListProps = {
 	tasks?: TaskCard[]
 	colNumber: number
@@ -13,9 +15,9 @@ export const TasksList: FC<TasksListProps> = ({ tasks, colNumber }) => {
 		<>
 			<Droppable droppableId={String(colNumber)}>
 				{(provided) => (
-					<div ref={provided.innerRef} {...provided.droppableProps}>
+					<div className={styles.colTask} ref={provided.innerRef} {...provided.droppableProps}>
 						{tasks?.map((task) => {
-							if (task.column === colNumber) {
+							if (task?.column === colNumber) {
 								customIndex++
 								return <TaskItem key={task.id} index={customIndex} {...task} />
 							}
