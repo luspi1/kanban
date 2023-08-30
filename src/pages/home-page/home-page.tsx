@@ -1,65 +1,68 @@
-import { type FC } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { Container } from 'src/UI/Container'
 import { Helmet } from 'react-helmet-async'
 import { DragDropContext, type DropResult } from 'react-beautiful-dnd'
 
-import { useGetColumnsQuery } from 'src/store/tasks/tasks.api'
-import { TitleColumns } from 'src/components/title-columns/title-columns'
-import { TasksRow } from 'src/components/tasks-row/tasks-row'
+import { useGetColumnsQuery, useReorderColumnMutation } from 'src/store/tasks/tasks.api'
+import { TaskColumns } from 'src/components/task-columns/task-columns'
+import { type KanbanColumn, type TaskCard } from 'src/types/tasks'
 
 export const HomePage: FC = () => {
-	const { data: columns, isError: columnsError } = useGetColumnsQuery(null)
+	const { data: columns } = useGetColumnsQuery(null)
+	const [reorderColumn] = useReorderColumnMutation()
 
-	// const { setAllTasks } = useActions()
-	// const storeTasks = useAppSelector((state) => state[NameSpace.Tasks].tasks)
-	// const [reorderTasks] = useReorderTasksMutation()
+	const reorder = (list: TaskCard[], startIndex: number, endIndex: number) => {
+		const result = Array.from(list)
+		const [removed] = result.splice(startIndex, 1)
+		result.splice(endIndex, 0, removed)
 
-	// const reorder = (list: TaskCard[], startIndex: number, endIndex: number) => {
-	// 	const result = Array.from(list)
-	// 	const [removed] = result.splice(startIndex, 1)
-	// 	result.splice(endIndex, 0, removed)
-	//
-	// 	return result
-	// }
+		return result
+	}
+	const move = (source, destination, droppableSource, droppableDestination) => {
+		const sourceClone = Array.from(source)
+		const destClone = Array.from(destination)
+		const [removed] = sourceClone.splice(droppableSource.index, 1)
+
+		destClone.splice(droppableDestination.index, 0, removed)
+
+		const result = {}
+		result[droppableSource.droppableId] = sourceClone
+		result[droppableDestination.droppableId] = destClone
+
+		return result
+	}
 	const onDragEnd = (result: DropResult) => {
-		if (!result.destination) {
+		const { source, destination } = result
+		if (!destination) {
 			return
 		}
+		const sInd = +source.droppableId
+		const dInd = +destination.droppableId
 
-		if (result.destination.index === result.source.index) {
-			return
+		if (columns) {
+			if (sInd === dInd) {
+				const items = reorder(columns[sInd].tasks, source.index, destination.index)
+				const resultColumn: KanbanColumn = { ...columns[sInd], tasks: items }
+				reorderColumn(resultColumn).catch((e) => console.error(e))
+			} else {
+				const result = move(columns[sInd].tasks, columns[dInd], source, destination)
+				console.log(result)
+				// const newState = [...columns]
+				// newState[sInd] = result[sInd]
+				// newState[dInd] = result[dInd]
+
+				// setState(newState.filter(group => group.length));
+			}
 		}
-
-		console.log('drop')
-		// setAllTasks(reorder(storeTasks, result.source.index, result.destination.index))
-		// const localTasks = tasks
-		//
-		// const searchedTask = localTasks?.find((el) => el.id === result.draggableId)
-		// const filteredTasks = localTasks?.filter((el) => el.id !== result.draggableId)
-		// const reorderedTask = {
-		// 	...searchedTask,
-		// 	column: Number(result.destination.droppableId),
-		// }
-		// if (localTasks) {
-		// 	const reorderedTasks: TaskCard[] = [...filteredTasks, reorderedTask]
-		// 	reorderTasks(reorderedTasks).catch((e) => console.error(e))
-		// }
-		// const droppedTasks = reorder(localTasks, result.source.index, result.destination.index)
 	}
 
-	// useEffect(() => {
-	// 	if (tasks) {
-	// 		setAllTasks(tasks)
-	// 	}
-	// }, [tasks])
 	return (
 		<Container className='index-page' margin='20px auto 35px auto'>
 			<Helmet>
 				<title>Канбан</title>
 			</Helmet>
-			<TitleColumns columns={columns} resError={columnsError} />
 			<DragDropContext onDragEnd={onDragEnd}>
-				<TasksRow tasks={tasks} colAmount={columns?.length ?? 0} />
+				<TaskColumns columns={columns} />
 			</DragDropContext>
 		</Container>
 	)

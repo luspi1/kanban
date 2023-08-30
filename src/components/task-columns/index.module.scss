@@ -1,0 +1,10 @@
+.taskColumns {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.columnItem {
+  width: 300px;
+  min-width: 300px;
+}

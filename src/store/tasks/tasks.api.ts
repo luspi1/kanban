@@ -5,28 +5,33 @@ export const tasksApi = createApi({
 	reducerPath: 'tasks/api',
 	tagTypes: ['Tasks'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://kanban-board-a0d3e-default-rtdb.europe-west1.firebasedatabase.app/',
+		baseUrl: 'http://localhost:3001/',
 	}),
 	endpoints: (build) => ({
 		getColumns: build.query<KanbanColumn[], null>({
 			query: () => ({
-				url: `columns.json`,
+				url: `/columns`,
 			}),
+			providesTags: () => [
+				{
+					type: 'Tasks',
+				},
+			],
 		}),
 
-		// reorderTasks: build.mutation({
-		// 	query: (TaskCards: TaskCard[]) => ({
-		// 		url: `taskCards.json`,
-		// 		method: 'PUT',
-		// 		body: TaskCards,
-		// 	}),
-		// 	invalidatesTags: () => [
-		// 		{
-		// 			type: 'Tasks',
-		// 		},
-		// 	],
-		// }),
+		reorderColumn: build.mutation({
+			query: (column: KanbanColumn) => ({
+				url: `/columns/${column.id}`,
+				method: 'PUT',
+				body: column,
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'Tasks',
+				},
+			],
+		}),
 	}),
 })
 
-export const { useGetColumnsQuery } = tasksApi
+export const { useGetColumnsQuery, useReorderColumnMutation } = tasksApi
