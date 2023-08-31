@@ -113,24 +113,7 @@ textarea {
   padding: 0 15px;
 }
 
-.nav-link {
-  display: block;
-  padding: 6px 10px;
-  color: #ffffff;
-  transition: all .3s;
-  border-radius: 20px;
-
-  &._active {
-    background-color: #337390;
-  }
-
-  &:hover {
-    background-color: #2A8D9C;
-  }
-}
-
-
-.nav-slider {
-  padding: 0 30px;
-  margin: 0 -30px;
+.col-item {
+  width: 300px;
+  min-width: 300px;
 }

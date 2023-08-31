@@ -5,7 +5,7 @@ export const tasksApi = createApi({
 	reducerPath: 'tasks/api',
 	tagTypes: ['Tasks'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:3001/',
+		baseUrl: 'http://localhost:4001/api/v1',
 	}),
 	endpoints: (build) => ({
 		getColumns: build.query<KanbanColumn[], null>({
@@ -17,6 +17,11 @@ export const tasksApi = createApi({
 					type: 'Tasks',
 				},
 			],
+		}),
+		getTitle: build.query<string[], null>({
+			query: () => ({
+				url: `/titleColumns`,
+			}),
 		}),
 
 		reorderColumn: build.mutation({
@@ -31,7 +36,24 @@ export const tasksApi = createApi({
 				},
 			],
 		}),
+		setColumns: build.mutation({
+			query: (columns: KanbanColumn[]) => ({
+				url: `/allCol`,
+				method: 'PUT',
+				body: columns,
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'Tasks',
+				},
+			],
+		}),
 	}),
 })
 
-export const { useGetColumnsQuery, useReorderColumnMutation } = tasksApi
+export const {
+	useGetColumnsQuery,
+	useReorderColumnMutation,
+	useSetColumnsMutation,
+	useGetTitleQuery,
+} = tasksApi

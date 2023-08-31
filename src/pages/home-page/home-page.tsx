@@ -1,15 +1,23 @@
-import { type FC, useEffect, useState } from 'react'
+import { type FC } from 'react'
 import { Container } from 'src/UI/Container'
 import { Helmet } from 'react-helmet-async'
-import { DragDropContext, type DropResult } from 'react-beautiful-dnd'
+import { DragDropContext, type DraggableLocation, type DropResult } from 'react-beautiful-dnd'
 
-import { useGetColumnsQuery, useReorderColumnMutation } from 'src/store/tasks/tasks.api'
+import {
+	useGetColumnsQuery,
+	useGetTitleQuery,
+	useReorderColumnMutation,
+	useSetColumnsMutation,
+} from 'src/store/tasks/tasks.api'
 import { TaskColumns } from 'src/components/task-columns/task-columns'
 import { type KanbanColumn, type TaskCard } from 'src/types/tasks'
+import { TitleColumns } from 'src/components/title-columns/title-columns'
 
 export const HomePage: FC = () => {
 	const { data: columns } = useGetColumnsQuery(null)
+	const { data: titleColumns } = useGetTitleQuery(null)
 	const [reorderColumn] = useReorderColumnMutation()
+	const [setColumns] = useSetColumnsMutation()
 
 	const reorder = (list: TaskCard[], startIndex: number, endIndex: number) => {
 		const result = Array.from(list)
@@ -18,16 +26,20 @@ export const HomePage: FC = () => {
 
 		return result
 	}
-	const move = (source, destination, droppableSource, droppableDestination) => {
+	const move = (
+		source: TaskCard[],
+		destination: TaskCard[],
+		droppableSource: DraggableLocation,
+		droppableDestination: DraggableLocation
+	) => {
 		const sourceClone = Array.from(source)
 		const destClone = Array.from(destination)
-		const [removed] = sourceClone.splice(droppableSource.index, 1)
+		const [removed] = sourceClone.splice(+droppableSource.index, 1)
 
 		destClone.splice(droppableDestination.index, 0, removed)
-
-		const result = {}
-		result[droppableSource.droppableId] = sourceClone
-		result[droppableDestination.droppableId] = destClone
+		const result: any = []
+		result[+droppableSource.droppableId] = sourceClone
+		result[+droppableDestination.droppableId] = destClone
 
 		return result
 	}
@@ -45,13 +57,13 @@ export const HomePage: FC = () => {
 				const resultColumn: KanbanColumn = { ...columns[sInd], tasks: items }
 				reorderColumn(resultColumn).catch((e) => console.error(e))
 			} else {
-				const result = move(columns[sInd].tasks, columns[dInd], source, destination)
-				console.log(result)
-				// const newState = [...columns]
-				// newState[sInd] = result[sInd]
-				// newState[dInd] = result[dInd]
-
-				// setState(newState.filter(group => group.length));
+				const result = move(columns[sInd].tasks, columns[dInd].tasks, source, destination)
+				const newState = [...columns]
+				const sCol: KanbanColumn = { ...newState[sInd], tasks: result[sInd] }
+				const dCol: KanbanColumn = { ...newState[dInd], tasks: result[dInd] }
+				newState[sInd] = sCol
+				newState[dInd] = dCol
+				setColumns(newState).catch((e) => console.error(e))
 			}
 		}
 	}
@@ -61,6 +73,8 @@ export const HomePage: FC = () => {
 			<Helmet>
 				<title>Канбан</title>
 			</Helmet>
+			<TitleColumns columns={titleColumns} />
+
 			<DragDropContext onDragEnd={onDragEnd}>
 				<TaskColumns columns={columns} />
 			</DragDropContext>

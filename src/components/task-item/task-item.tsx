@@ -6,9 +6,9 @@ import cnBind from 'classnames/bind'
 import { SettingsSvg } from 'src/UI/icons/settingsSVG'
 import {
 	Draggable,
-	DraggableStateSnapshot,
-	DraggingStyle,
-	NotDraggingStyle,
+	type DraggableStateSnapshot,
+	type DraggingStyle,
+	type NotDraggingStyle,
 } from 'react-beautiful-dnd'
 import { type TaskStatus } from 'src/types/tasks'
 
@@ -30,7 +30,7 @@ export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
 		}
 		return {
 			...style,
-			transitionDuration: `0.01s`,
+			transitionDuration: `0.001s`,
 		}
 	}
 
