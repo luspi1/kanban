@@ -30,7 +30,7 @@ export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
 		}
 		return {
 			...style,
-			transitionDuration: `0.001s`,
+			transitionDuration: `0.00000001s`,
 		}
 	}
 

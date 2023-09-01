@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { type KanbanColumn } from 'src/types/tasks'
+import { type Board, type KanbanColumn, type TrackItem } from 'src/types/tasks'
 
 export const tasksApi = createApi({
 	reducerPath: 'tasks/api',
@@ -8,9 +8,9 @@ export const tasksApi = createApi({
 		baseUrl: 'http://localhost:4001/api/v1',
 	}),
 	endpoints: (build) => ({
-		getColumns: build.query<KanbanColumn[], null>({
-			query: () => ({
-				url: `/columns`,
+		getColumns: build.query<KanbanColumn[], string | undefined>({
+			query: (param) => ({
+				url: `boards/${param ?? '0'}/allColumns`,
 			}),
 			providesTags: () => [
 				{
@@ -18,15 +18,25 @@ export const tasksApi = createApi({
 				},
 			],
 		}),
-		getTitle: build.query<string[], null>({
-			query: () => ({
-				url: `/titleColumns`,
+		getTracks: build.query<TrackItem[], string | undefined>({
+			query: (param) => ({
+				url: `boards/${param ?? '0'}/tracks`,
+			}),
+			providesTags: () => [
+				{
+					type: 'Tasks',
+				},
+			],
+		}),
+		getTitle: build.query<string[], string | undefined>({
+			query: (param) => ({
+				url: `boards/${param ?? '0'}/titleColumns`,
 			}),
 		}),
 
 		reorderColumn: build.mutation({
-			query: (column: KanbanColumn) => ({
-				url: `/columns/${column.id}`,
+			query: ({ boardId, ...column }: KanbanColumn) => ({
+				url: `boards/${boardId ?? '0'}/columns`,
 				method: 'PUT',
 				body: column,
 			}),
@@ -36,9 +46,11 @@ export const tasksApi = createApi({
 				},
 			],
 		}),
+
+		// ???????????????????
 		setColumns: build.mutation({
-			query: (columns: KanbanColumn[]) => ({
-				url: `/allCol`,
+			query: ({ boardId, ...columns }: KanbanColumn[]) => ({
+				url: `boards/${boardId ?? '0'}/allCol`,
 				method: 'PUT',
 				body: columns,
 			}),
@@ -48,12 +60,19 @@ export const tasksApi = createApi({
 				},
 			],
 		}),
+		getBoards: build.query<Board[], null>({
+			query: () => ({
+				url: `/allBoards`,
+			}),
+		}),
 	}),
 })
 
 export const {
-	useGetColumnsQuery,
+	useGetTracksQuery,
 	useReorderColumnMutation,
 	useSetColumnsMutation,
 	useGetTitleQuery,
+	useGetColumnsQuery,
+	useGetBoardsQuery,
 } = tasksApi

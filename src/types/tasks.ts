@@ -11,3 +11,14 @@ export type KanbanColumn = {
 	title: string
 	tasks: TaskCard[]
 }
+
+export type TrackItem = {
+	id: string
+	title: string
+	columns: KanbanColumn[]
+}
+
+export type Board = {
+	id: string
+	title: string
+}

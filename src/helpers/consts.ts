@@ -1,5 +1,6 @@
 export enum AppRoute {
-	Home = '/',
+	Kanban = '/boards/:boardId',
+	Boards = '/',
 }
 
 export enum TaskStatusMap {
