@@ -46,7 +46,7 @@ export const FileInput: FC<ControlledFileProps> = (props) => {
 			control={props.control}
 			name={props.name}
 			defaultValue={[]}
-			render={({ field: { onChange, onBlur, value } }) => (
+			render={({ field: { onBlur, value } }) => (
 				<div className={cn(styles.mainDropzone)}>
 					<h4>Перетяните изображение в это поле или</h4>
 					<Dropzone onDrop={onDrop}>
