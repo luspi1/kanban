@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { NameSpace } from 'src/helpers/consts'
-import { type TaskCard } from 'src/types/tracks'
+import { type TaskCard } from 'src/types/tasks'
 
 type TasksSliceState = {
 	tasks: TaskCard[]

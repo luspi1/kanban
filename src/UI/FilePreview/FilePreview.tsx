@@ -1,5 +1,5 @@
 import { type FC, type MouseEventHandler } from 'react'
-import { DeleteImgSvg } from 'src/UI/icons/DeleteImgSVG'
+import { DeleteImgSVG } from 'src/UI/icons/deleteImgSVG'
 import styles from './index.module.scss'
 
 type FilePreviewProps = {
@@ -11,7 +11,7 @@ export const FilePreview: FC<FilePreviewProps> = ({ imgSrc, imgName, onDeleteImg
 	return (
 		<li className={styles.filePreview}>
 			<button type='button' onClick={onDeleteImg}>
-				<DeleteImgSvg />
+				<DeleteImgSVG />
 			</button>
 			<img src={imgSrc} alt={imgName} />
 		</li>

@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AppRoute } from 'src/helpers/consts'
 
-import { Layout } from 'src/modules/Layout/Layout'
+import { Layout } from 'src/modules/layout/layout'
 import { HomePage } from 'src/pages/home-page/home-page'
 import { BoardsPage } from 'src/pages/boards-page/boards-page'
 

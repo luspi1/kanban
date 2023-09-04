@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { type Board, type KanbanColumn, type TrackItem } from 'src/types/tasks'
+import { type Board, type BoardId, type KanbanColumn, type TrackItem } from 'src/types/tasks'
+
+type ColumnsWithId = [BoardId, KanbanColumn[]]
 
 export const tasksApi = createApi({
 	reducerPath: 'tasks/api',
@@ -34,8 +36,8 @@ export const tasksApi = createApi({
 			}),
 		}),
 
-		reorderColumn: build.mutation({
-			query: ({ boardId, ...column }: KanbanColumn) => ({
+		reorderColumn: build.mutation<null, BoardId & KanbanColumn>({
+			query: ({ boardId, ...column }) => ({
 				url: `boards/${boardId ?? '0'}/columns`,
 				method: 'PUT',
 				body: column,
@@ -47,10 +49,9 @@ export const tasksApi = createApi({
 			],
 		}),
 
-		// ???????????????????
-		setColumns: build.mutation({
-			query: ({ boardId, ...columns }: KanbanColumn[]) => ({
-				url: `boards/${boardId ?? '0'}/allCol`,
+		setColumns: build.mutation<null, ColumnsWithId>({
+			query: ([boardId, columns]) => ({
+				url: `boards/${boardId ?? '0'}/updAllCol`,
 				method: 'PUT',
 				body: columns,
 			}),
@@ -65,6 +66,11 @@ export const tasksApi = createApi({
 				url: `/allBoards`,
 			}),
 		}),
+		getBoardById: build.query<Board, string>({
+			query: (id) => ({
+				url: `/boards/${id}`,
+			}),
+		}),
 	}),
 })
 
@@ -75,4 +81,5 @@ export const {
 	useGetTitleQuery,
 	useGetColumnsQuery,
 	useGetBoardsQuery,
+	useGetBoardByIdQuery,
 } = tasksApi

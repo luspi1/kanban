@@ -1,0 +1,63 @@
+.topMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.projectInfo {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 3px;
+    margin-right: 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+}
+
+.projectDate {
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-right: 50px;
+  }
+
+  a {
+    font-weight: 700;
+    color: #064AB1;
+  }
+}
+
+.menuRight {
+  display: flex;
+  align-items: center;
+  a {
+    font-size: 18px;
+    color: #064AB1;
+    text-decoration: underline;
+  }
+}
+
+.membersList {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-right: 40px;
+
+  li {
+    cursor: pointer;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

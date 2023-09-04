@@ -18,7 +18,20 @@ export type TrackItem = {
 	columns: KanbanColumn[]
 }
 
+export type Member = {
+	id: string
+	name: string
+	position: string
+}
+
+export type BoardId = {
+	boardId?: string
+}
+
 export type Board = {
 	id: string
 	title: string
+	img: string
+	date: string
+	members: Member[]
 }

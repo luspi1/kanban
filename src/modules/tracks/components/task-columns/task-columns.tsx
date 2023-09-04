@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import styles from './index.module.scss'
-import { TasksList } from 'src/components/tasks-list/tasks-list'
+import { TasksList } from 'src/modules/tracks/components/tasks-list/tasks-list'
 import { type KanbanColumn } from 'src/types/tasks'
 import { Droppable } from 'react-beautiful-dnd'
 

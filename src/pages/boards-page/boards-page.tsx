@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 
 import styles from './index.module.scss'
 import { useGetBoardsQuery } from 'src/store/tasks/tasks.api'
-import { BoardsList } from 'src/components/boards-list/boards-list'
+import { BoardsList } from 'src/modules/boards-list/boards-list'
 
 export const BoardsPage: FC = () => {
 	const { data: boardsData } = useGetBoardsQuery(null)

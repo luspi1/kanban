@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 import { type TaskCard } from 'src/types/tasks'
-import { TaskItem } from 'src/components/task-item/task-item'
+import { TaskItem } from 'src/modules/tracks/components/task-item/task-item'
 
 import styles from './index.module.scss'
 
