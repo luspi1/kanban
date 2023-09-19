@@ -57,7 +57,7 @@ const updateColumn = (req, res) => {
 };
 
 const updateAllColumns = (req, res) => {
-  const newColumns = req.body
+  const newColumns = req.body;
   tracks.map(track => {
     const colLength = track.columns.length;
     const currentCols = newColumns.splice(0, colLength);
@@ -67,11 +67,21 @@ const updateAllColumns = (req, res) => {
 };
 
 const getBoardById = (req, res) => {
-  const boardId = req.params.id
+  const boardId = req.params.id;
   const foundBoard = boards.find(board => {
-    return board.id === boardId
-  })
-    res.status(201).json(foundBoard);
+    return board.id === boardId;
+  });
+  res.status(201).json(foundBoard);
+};
+const getTaskById = (req, res) => {
+  const taskId = req.params.id;
+  const allTasks = tracks.map(track => {
+    return track.columns.map(column => column.tasks);
+  }).flat(Infinity);
+  const foundTask = allTasks.find(task => {
+    return task.id === taskId;
+  });
+  res.status(201).json(foundTask);
 };
 
 app.get("/api/v1/boards/:id/allColumns", getAllColumns);
@@ -81,6 +91,7 @@ app.put("/api/v1/boards/:id/columns", updateColumn);
 app.put("/api/v1/boards/:id/updAllCol", updateAllColumns);
 app.get("/api/v1/allBoards", getAllBoards);
 app.get("/api/v1/boards/:id", getBoardById);
+app.get("/api/v1/task/:id", getTaskById);
 app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT));
 
 

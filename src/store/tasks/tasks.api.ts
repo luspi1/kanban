@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { type Board, type BoardId, type KanbanColumn, type TrackItem } from 'src/types/tasks'
+import {
+	type Board,
+	type BoardId,
+	type KanbanColumn,
+	type TaskCard,
+	type TrackItem,
+} from 'src/types/tasks'
 
 type ColumnsWithId = [BoardId, KanbanColumn[]]
 
@@ -71,6 +77,11 @@ export const tasksApi = createApi({
 				url: `/boards/${id}`,
 			}),
 		}),
+		getTaskById: build.query<TaskCard, string>({
+			query: (id) => ({
+				url: `/task/${id}`,
+			}),
+		}),
 	}),
 })
 
@@ -82,4 +93,5 @@ export const {
 	useGetColumnsQuery,
 	useGetBoardsQuery,
 	useGetBoardByIdQuery,
+	useGetTaskByIdQuery,
 } = tasksApi

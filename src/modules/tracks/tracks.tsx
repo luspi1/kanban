@@ -50,7 +50,9 @@ export const Tracks: FC = () => {
 
 	const handleShowTrack = (e: React.MouseEvent<HTMLElement>) => {
 		const currentTasks = e.currentTarget?.nextElementSibling
+		const currentSvg = e.currentTarget?.querySelector('svg')
 		currentTasks?.classList.toggle('_hidden')
+		currentSvg?.classList.toggle('_rotate')
 	}
 
 	return (

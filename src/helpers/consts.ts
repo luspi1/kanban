@@ -16,4 +16,5 @@ export enum ItemType {
 
 export enum NameSpace {
 	Tasks = 'TASKS',
+	TaskForm = 'TASK_FORM',
 }

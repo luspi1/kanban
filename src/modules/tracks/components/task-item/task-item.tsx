@@ -11,6 +11,7 @@ import {
 	type NotDraggingStyle,
 } from 'react-beautiful-dnd'
 import { type TaskStatus } from 'src/types/tasks'
+import { useActions } from 'src/hooks/actions/actions'
 
 type TaskCardProps = {
 	id: string
@@ -21,6 +22,7 @@ type TaskCardProps = {
 
 const cx = cnBind.bind(styles)
 export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
+	const { setCurrentTaskId } = useActions()
 	const getStyle = (
 		style: DraggingStyle | NotDraggingStyle | undefined,
 		snapshot: DraggableStateSnapshot
@@ -44,6 +46,7 @@ export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
 					style={getStyle(provided.draggableProps.style, snapshot)}
+					onClick={() => setCurrentTaskId(id)}
 				>
 					<div className={styles.taskTop}>
 						<span className={styles.taskStatus}>{TaskStatusMap[status]}</span>

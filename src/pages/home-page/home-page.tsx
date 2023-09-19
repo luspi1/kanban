@@ -7,6 +7,7 @@ import { Tracks } from 'src/modules/tracks/tracks'
 
 import styles from './index.module.scss'
 import { TopMenu } from 'src/pages/home-page/components/top-menu/top-menu'
+import { TaskForm } from 'src/modules/task-form/task-form'
 
 export const HomePage: FC = () => {
 	return (
@@ -17,6 +18,7 @@ export const HomePage: FC = () => {
 			<TopMenu />
 			<TitleColumns />
 			<Tracks />
+			<TaskForm />
 		</Container>
 	)
 }
