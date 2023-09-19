@@ -1,5 +1,5 @@
 import { type BoardId, type KanbanColumn } from 'src/types/tasks'
-import { type FC } from 'react'
+import React, { type FC } from 'react'
 import { TaskColumns } from 'src/modules/tracks/components/task-columns/task-columns'
 
 import styles from './index.module.scss'
@@ -48,11 +48,16 @@ export const Tracks: FC = () => {
 		}
 	}
 
+	const handleShowTrack = (e: React.MouseEvent<HTMLElement>) => {
+		const currentTasks = e.currentTarget?.nextElementSibling
+		currentTasks?.classList.toggle('_hidden')
+	}
+
 	return (
 		<DragDropContext onDragEnd={onDragEnd}>
 			{tracks?.map((trackItem) => (
 				<div className={styles.tracksList} key={trackItem.id}>
-					<div className={styles.tracksTitle}>
+					<div className={styles.tracksTitle} onClick={handleShowTrack}>
 						<TrackArrowSvg />
 						<h4>{trackItem.title}</h4>
 						<span className={styles.tracksLine}></span>
