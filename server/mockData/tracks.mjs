@@ -9,22 +9,26 @@ export let tracks = [
           {
             id: "4",
             title: "Задача 4",
-            status: "lower"
+            status: "lower",
+            desc: "описание задачи213"
           },
           {
             id: "7",
             title: "Задача 7",
-            status: "medium"
+            status: "medium",
+            desc: "описание dawdawd213"
           },
           {
             id: "6",
             title: "Задача 6",
-            status: "common"
+            status: "common",
+            desc: "описание описание описание"
           },
           {
             id: "5",
             title: "Задача 5",
-            status: "medium"
+            status: "medium",
+            desc: "описание описание описание dawd awd aw daw da dw"
           }
         ]
       },
@@ -34,22 +38,26 @@ export let tracks = [
           {
             id: "312",
             title: "Задача 123",
-            status: "lower"
+            status: "lower",
+            desc: "Какое описание 1"
           },
           {
             id: "768",
             title: "Задача 6",
-            status: "common"
+            status: "common",
+            desc: "Нормальное, простое, понятное. Описание задачи. Нормальное, простое, понятное. Описание задачи."
           },
           {
             id: "4356",
             title: "Задача 5",
-            status: "high"
+            status: "high",
+            desc: "Нормальное, простое, понятное. Описание задачи."
           },
           {
             id: "12321",
             title: "Задача 1231",
-            status: "common"
+            status: "common",
+            desc: "Описание задачи."
           }
         ]
       },
@@ -59,7 +67,8 @@ export let tracks = [
           {
             id: "3322",
             title: "Задача 124124",
-            status: "medium"
+            status: "medium",
+            desc: "СДЕЛАТЬ ЗАДАЧУ!"
           }
         ]
       },
@@ -69,12 +78,14 @@ export let tracks = [
           {
             id: "1",
             title: "Задача 1",
-            status: "high"
+            status: "high",
+            desc: "описание очень важной задачи"
           },
           {
             id: "2",
             title: "Задача 2",
-            status: "common"
+            status: "common",
+            desc: "описание задачи"
           }
         ]
       }]
@@ -89,12 +100,14 @@ export let tracks = [
           {
             id: "56",
             title: "Задача 4",
-            status: "lower"
+            status: "lower",
+            desc: "Описание"
           },
           {
             id: "59",
             title: "Задача 5",
-            status: "medium"
+            status: "medium",
+            desc: "Описание"
           }
         ]
       },
@@ -104,12 +117,14 @@ export let tracks = [
           {
             id: "66",
             title: "Задача 6",
-            status: "common"
+            status: "common",
+            desc: "Описание"
           },
           {
             id: "67",
             title: "Задача 5",
-            status: "high"
+            status: "high",
+            desc: "Описание"
           }
         ]
       },
@@ -119,7 +134,8 @@ export let tracks = [
           {
             id: "87",
             title: "Задача 124124",
-            status: "medium"
+            status: "medium",
+            desc: "Описание"
           }
         ]
       },
@@ -129,7 +145,8 @@ export let tracks = [
           {
             id: "96",
             title: "Задача 1",
-            status: "high"
+            status: "high",
+            desc: "Описание"
           }
         ]
       }]

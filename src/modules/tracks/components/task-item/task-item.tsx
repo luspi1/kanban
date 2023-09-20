@@ -18,10 +18,11 @@ type TaskCardProps = {
 	title: string
 	status: TaskStatus
 	index: number
+	desc: string
 }
 
 const cx = cnBind.bind(styles)
-export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
+export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index, desc }) => {
 	const { setCurrentTaskId } = useActions()
 	const getStyle = (
 		style: DraggingStyle | NotDraggingStyle | undefined,
@@ -55,7 +56,7 @@ export const TaskItem: FC<TaskCardProps> = ({ title, status, id, index }) => {
 						</button>
 					</div>
 					<h4>{title}</h4>
-					<p>{index}</p>
+					<p>{desc}</p>
 				</div>
 			)}
 		</Draggable>

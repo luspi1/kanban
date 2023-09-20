@@ -1,9 +1,12 @@
 export type TaskStatus = 'high' | 'common' | 'lower' | 'medium'
+export type TaskNameInputs = 'desc' | 'title'
 
 export type TaskCard = {
 	id: string
-	title: string
+	title: TaskNameInputs
 	status: TaskStatus
+	executor: string
+	desc: TaskNameInputs
 }
 
 export type KanbanColumn = {

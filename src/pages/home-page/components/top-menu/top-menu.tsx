@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import React, { type FC } from 'react'
 import { AppRoute } from 'src/helpers/consts'
 import { Link, useParams } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ import { useGetBoardByIdQuery } from 'src/store/tasks/tasks.api'
 import { AvatarSvg } from 'src/UI/icons/avatarSVG'
 import { getRandomColor } from 'src/helpers/utils'
 
-export const TopMenu: FC = () => {
+export const TopMenu: FC = React.memo(() => {
 	const { boardId } = useParams()
 
 	const { data: boardData } = useGetBoardByIdQuery(String(boardId))
@@ -40,4 +40,5 @@ export const TopMenu: FC = () => {
 			</div>
 		</div>
 	)
-}
+})
+TopMenu.displayName = 'TopMenu'

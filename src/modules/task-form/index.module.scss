@@ -1,12 +1,63 @@
 .taskForm {
   position: fixed;
-  right: -2px;
+  right: -1000px;
   top: 50%;
   transform: translateY(-50%);
   background-color: #fff;
-  padding: 15px;
+  padding: 15px 70px 15px 15px;
   width: 40%;
   min-height: 90%;
   border-radius: 5px 0 0 5px;
   border: 1px solid #064AB1;
+  transition: all .3s linear;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+
+  &._active {
+    right: -2px;
+    opacity: 1;
+  }
+
+
+  .titleInput {
+    font-size: 25px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 0;
+    margin-bottom: 30px;
+    height: 50px;
+  }
+
+  .descInput {
+    border: 1px solid #D0D5DF;
+    height: 130px;
+  }
+
+  h6 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    span {
+      font-weight: 500;
+      color: #064AB1;
+    }
+  }
+
 }
+
+.closeFormBtn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  outline: none;
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+

@@ -9,7 +9,7 @@ import { BoardsList } from 'src/modules/boards-list/boards-list'
 export const BoardsPage: FC = () => {
 	const { data: boardsData } = useGetBoardsQuery(null)
 	return (
-		<Container className={styles.boardsPage} margin='20px auto 35px auto'>
+		<Container className={styles.boardsPage} $margin='20px auto 35px auto'>
 			<Helmet>
 				<title>Ваши доски</title>
 			</Helmet>

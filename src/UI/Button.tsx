@@ -6,13 +6,13 @@ type ButtonProps = PropsWithChildren<{
 	onClick?: () => void
 	className?: string
 	padding?: string
-	margin?: string
+	$margin?: string
 	width?: string
 	color?: string
 	size?: string
 	weight?: string
 	lineHeight?: string
-	background?: string
+	$background?: string
 	radius?: string
 	border?: string
 	disabledState?: boolean
@@ -30,10 +30,10 @@ const StyledButton = styled.button<ButtonProps>`
 	font-weight: ${({ weight }) => weight ?? '700'};
 	font-size: ${({ size }) => size ?? '14px'};
 	padding: ${({ padding }) => padding ?? '12px 22px'};
-	margin: ${({ margin }) => margin ?? '0'};
+	margin: ${({ $margin }) => $margin ?? '0'};
 	width: ${({ width }) => width ?? 'auto'};
 	color: ${({ color }) => color ?? '#ffffff'};
-	background-color: ${({ background }) => background ?? '#337390'};
+	background-color: ${({ $background }) => $background ?? '#337390'};
 	border-radius: ${({ radius }) => radius ?? '3px'};
 	border: ${({ border }) => border ?? '1px solid #337390'};
 

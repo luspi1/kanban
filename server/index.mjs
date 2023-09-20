@@ -66,6 +66,12 @@ const updateAllColumns = (req, res) => {
   res.status(201).json(newColumns);
 };
 
+const updateTask = (req, res) => {
+  const taskInfo = req.body;
+
+  res.status(201).json(taskInfo);
+};
+
 const getBoardById = (req, res) => {
   const boardId = req.params.id;
   const foundBoard = boards.find(board => {
@@ -89,6 +95,7 @@ app.get("/api/v1/boards/:id/tracks", getAllTracks);
 app.get("/api/v1/boards/:id/titleColumns", getTitleColumns);
 app.put("/api/v1/boards/:id/columns", updateColumn);
 app.put("/api/v1/boards/:id/updAllCol", updateAllColumns);
+app.put("/api/v1/taskItem", updateTask);
 app.get("/api/v1/allBoards", getAllBoards);
 app.get("/api/v1/boards/:id", getBoardById);
 app.get("/api/v1/task/:id", getTaskById);

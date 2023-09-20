@@ -1,13 +1,11 @@
 import { ErrorMessage } from '@hookform/error-message'
-import cn from 'classnames'
 import React, { type FC, type HTMLAttributes, type ReactNode } from 'react'
 import { type FieldErrors, useController, type UseControllerProps } from 'react-hook-form'
-import MaskedInput, { type Mask } from 'react-text-mask'
 
 import styles from './index.module.scss'
+import cn from 'classnames'
 
 type customControlledFieldProps = {
-	mask?: Mask | ((value: string) => Mask)
 	svg?: ReactNode
 	errors?: FieldErrors
 	type: string
@@ -22,15 +20,8 @@ export const ControlledField: FC<UseControllerProps & ControlledFieldProps> = (p
 		<div className={styles.fieldEl}>
 			<div className={styles.fieldWrapper}>
 				{props.svg}
-				<MaskedInput
-					{...props}
-					{...field}
-					type={props.type}
-					className={cn(styles.controlledField, props.className, {
-						[styles.isSvg]: props.svg,
-					})}
-					mask={props.mask ? props.mask : false}
-				/>
+
+				<input {...props} {...field} className={cn(styles.controlledField, props.className)} />
 			</div>
 			{props.errors && (
 				<p className={styles.warningMessage}>

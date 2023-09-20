@@ -19,6 +19,9 @@ export const taskFormSlice = createSlice({
 			state.currentTaskId = action.payload
 			state.activityForm = true
 		},
+		changeActivity: (state) => {
+			state.activityForm = false
+		},
 	},
 })
 export const taskFormActions = taskFormSlice.actions

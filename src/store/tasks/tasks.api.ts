@@ -82,6 +82,18 @@ export const tasksApi = createApi({
 				url: `/task/${id}`,
 			}),
 		}),
+		setTaskItem: build.mutation<null, TaskCard>({
+			query: (task) => ({
+				url: `taskItem/${task.id}`,
+				method: 'PUT',
+				body: task,
+			}),
+			invalidatesTags: () => [
+				{
+					type: 'Tasks',
+				},
+			],
+		}),
 	}),
 })
 
@@ -89,6 +101,7 @@ export const {
 	useGetTracksQuery,
 	useReorderColumnMutation,
 	useSetColumnsMutation,
+	useSetTaskItemMutation,
 	useGetTitleQuery,
 	useGetColumnsQuery,
 	useGetBoardsQuery,
