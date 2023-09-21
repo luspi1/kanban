@@ -67,10 +67,37 @@ const updateAllColumns = (req, res) => {
 };
 
 const updateTask = (req, res) => {
-  const taskInfo = req.body;
+  const taskId = req.params.id;
+  const newTask = req.body;
 
-  res.status(201).json(taskInfo);
+  const newTracks = tracks.map(track => {
+    const newTracksArr = track.columns.map(column => {
+      const newColumnsArr = column.tasks.map(task => {
+        if (task.id === taskId) {
+          return newTask;
+        } else {
+          return task;
+        }
+      });
+      return {
+        ...column,
+        tasks: newColumnsArr
+      };
+    });
+
+    return {
+      ...track,
+      columns: newTracksArr
+    };
+
+  });
+
+  tracks.splice(0, tracks.length, ...newTracks)
+
+
+  res.status(201).json(tracks);
 };
+
 
 const getBoardById = (req, res) => {
   const boardId = req.params.id;
@@ -95,7 +122,7 @@ app.get("/api/v1/boards/:id/tracks", getAllTracks);
 app.get("/api/v1/boards/:id/titleColumns", getTitleColumns);
 app.put("/api/v1/boards/:id/columns", updateColumn);
 app.put("/api/v1/boards/:id/updAllCol", updateAllColumns);
-app.put("/api/v1/taskItem", updateTask);
+app.put("/api/v1/taskItem/:id", updateTask);
 app.get("/api/v1/allBoards", getAllBoards);
 app.get("/api/v1/boards/:id", getBoardById);
 app.get("/api/v1/task/:id", getTaskById);

@@ -10,25 +10,15 @@ export let tracks = [
             id: "4",
             title: "Задача 4",
             status: "lower",
-            desc: "описание задачи213"
-          },
-          {
-            id: "7",
-            title: "Задача 7",
-            status: "medium",
-            desc: "описание dawdawd213"
-          },
-          {
-            id: "6",
-            title: "Задача 6",
-            status: "common",
-            desc: "описание описание описание"
+            desc: "Duis aute irure dolor in reprehenderit in voluptate velit es",
+            executor: 'Андрей И.'
           },
           {
             id: "5",
             title: "Задача 5",
             status: "medium",
-            desc: "описание описание описание dawd awd aw daw da dw"
+            desc: "amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ",
+            executor: 'Петр К.'
           }
         ]
       },
@@ -39,25 +29,15 @@ export let tracks = [
             id: "312",
             title: "Задача 123",
             status: "lower",
-            desc: "Какое описание 1"
-          },
-          {
-            id: "768",
-            title: "Задача 6",
-            status: "common",
-            desc: "Нормальное, простое, понятное. Описание задачи. Нормальное, простое, понятное. Описание задачи."
-          },
-          {
-            id: "4356",
-            title: "Задача 5",
-            status: "high",
-            desc: "Нормальное, простое, понятное. Описание задачи."
+            desc: "Какое описание 1",
+            executor: 'Антон С.'
           },
           {
             id: "12321",
             title: "Задача 1231",
             status: "common",
-            desc: "Описание задачи."
+            desc: "Описание задачи.",
+            executor: 'Игорь И.'
           }
         ]
       },
@@ -68,7 +48,8 @@ export let tracks = [
             id: "3322",
             title: "Задача 124124",
             status: "medium",
-            desc: "СДЕЛАТЬ ЗАДАЧУ!"
+            desc: "СДЕЛАТЬ ЗАДАЧУ!",
+            executor: 'Светлана И.'
           }
         ]
       },
@@ -79,14 +60,9 @@ export let tracks = [
             id: "1",
             title: "Задача 1",
             status: "high",
-            desc: "описание очень важной задачи"
+            desc: "Excepteur sint occaecat cupidatat",
+            executor: 'Ксения Н.'
           },
-          {
-            id: "2",
-            title: "Задача 2",
-            status: "common",
-            desc: "описание задачи"
-          }
         ]
       }]
   },
@@ -101,13 +77,15 @@ export let tracks = [
             id: "56",
             title: "Задача 4",
             status: "lower",
-            desc: "Описание"
+            desc: "majority have suffered alteration in some form, by injected humour, or randomised wo",
+            executor: 'Сергей С.'
           },
           {
             id: "59",
             title: "Задача 5",
             status: "medium",
-            desc: "Описание"
+            desc: "It is a long established fact that a reader will be distracted by the readable",
+            executor: 'Сергей А.'
           }
         ]
       },
@@ -118,13 +96,8 @@ export let tracks = [
             id: "66",
             title: "Задача 6",
             status: "common",
-            desc: "Описание"
-          },
-          {
-            id: "67",
-            title: "Задача 5",
-            status: "high",
-            desc: "Описание"
+            desc: " quis nostrud exercitation ullamco",
+            executor: 'Сергей Т.'
           }
         ]
       },
@@ -135,7 +108,8 @@ export let tracks = [
             id: "87",
             title: "Задача 124124",
             status: "medium",
-            desc: "Описание"
+            desc: "Снова описание",
+            executor: 'Дмитрий А.'
           }
         ]
       },
@@ -146,7 +120,8 @@ export let tracks = [
             id: "96",
             title: "Задача 1",
             status: "high",
-            desc: "Описание"
+            desc: "Еще одно описание",
+            executor: 'Дмитрий А.'
           }
         ]
       }]

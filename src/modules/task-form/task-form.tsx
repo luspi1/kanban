@@ -13,7 +13,8 @@ import { taskSchema } from 'src/modules/task-form/schema'
 import { Button } from 'src/UI/Button'
 import { ControlledField } from 'src/UI/ControlledField/СontrolledField'
 import { ControlledTextarea } from 'src/UI/ControlledTextarea/ControlledTextarea'
-import { type TaskNameInputs } from 'src/types/tasks'
+import { type TaskCard, type TaskNameInputs } from 'src/types/tasks'
+import { toast } from 'react-toastify'
 
 type TaskFormProps = {
 	id: string | null
@@ -42,11 +43,17 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 	})
 
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		const newTask = {
-			...currentTask,
-			...data,
+		if (currentTask) {
+			const newTask: TaskCard = {
+				...currentTask,
+				...data,
+			}
+			setTaskItem(newTask)
+				.then(() => changeActivity())
+				.catch((e) => console.error(e))
+		} else {
+			toast.error('Задача не найдена')
 		}
-		setTaskItem(newTask).catch((e) => console.error(e))
 	}
 
 	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]
