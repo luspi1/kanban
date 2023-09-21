@@ -1,5 +1,6 @@
 import { type TaskCard } from 'src/types/tasks'
 import { type DraggableLocation } from 'react-beautiful-dnd'
+import { type SelOption } from 'src/types/select'
 
 export const reorder = (list: TaskCard[], startIndex: number, endIndex: number) => {
 	const result = Array.from(list)
@@ -35,8 +36,6 @@ export const getRandomColor = () => {
 	return color
 }
 
-// import { type SelOption } from 'src/types/select'
-//
-// export const getValue = (value: string, options: SelOption[]) => {
-// 	return value ? options.find((option) => option.value === value) : ''
-// }
+export const getValue = (value: string, options: SelOption[]) => {
+	return value ? options.find((option) => option.value === value) : ''
+}

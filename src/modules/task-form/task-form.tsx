@@ -7,7 +7,7 @@ import { useActions } from 'src/hooks/actions/actions'
 import { useAppSelector } from 'src/hooks/store'
 import { getActivityTaskForm } from 'src/store/task-form/task-form.selectors'
 import cnBind from 'classnames/bind'
-import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { taskSchema } from 'src/modules/task-form/schema'
 import { Button } from 'src/UI/Button'
@@ -15,6 +15,10 @@ import { ControlledField } from 'src/UI/ControlledField/СontrolledField'
 import { ControlledTextarea } from 'src/UI/ControlledTextarea/ControlledTextarea'
 import { type TaskCard, type TaskNameInputs } from 'src/types/tasks'
 import { toast } from 'react-toastify'
+import Select from 'react-select'
+import { getValue } from 'src/helpers/utils'
+import { CategoryOptions, DifficultOptions, PriorityOptions } from 'src/modules/task-form/consts'
+import { type SelOption } from 'src/types/select'
 
 type TaskFormProps = {
 	id: string | null
@@ -34,11 +38,14 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 		setValue,
 		getValues,
 	} = useForm<FieldValues>({
-		mode: 'onChange',
+		mode: 'onSubmit',
 		resolver: yupResolver(taskSchema),
 		defaultValues: {
 			title: '',
 			desc: '',
+			priority: 'common',
+			difficult: 'common',
+			category: 'testing',
 		},
 	})
 
@@ -87,6 +94,59 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				className={styles.titleInput}
 				placeholder='Введите название задачи'
 			/>
+
+			<div className={styles.taskStatuses}>
+				<Controller
+					control={control}
+					name='priority'
+					render={({ field: { onChange, value } }) => (
+						<Select
+							classNamePrefix='custom-select'
+							className={styles.statusSelect}
+							options={PriorityOptions}
+							value={getValue(value, PriorityOptions)}
+							onChange={(newValue) => {
+								onChange((newValue as SelOption).value)
+							}}
+						/>
+					)}
+				/>
+				<Controller
+					control={control}
+					name='difficult'
+					render={({ field: { onChange, value } }) => (
+						<>
+							<Select
+								classNamePrefix='custom-select'
+								className={styles.statusSelect}
+								options={DifficultOptions}
+								value={getValue(value, DifficultOptions)}
+								onChange={(newValue) => {
+									onChange((newValue as SelOption).value)
+								}}
+							/>
+						</>
+					)}
+				/>
+				<Controller
+					control={control}
+					name='category'
+					render={({ field: { onChange, value } }) => (
+						<>
+							<Select
+								classNamePrefix='custom-select'
+								className={styles.statusSelect}
+								options={CategoryOptions}
+								value={getValue(value, CategoryOptions)}
+								onChange={(newValue) => {
+									onChange((newValue as SelOption).value)
+								}}
+							/>
+						</>
+					)}
+				/>
+			</div>
+
 			<h6>
 				Исполнитель: <span>{currentTask?.executor ?? 'не назначен'}</span>
 			</h6>

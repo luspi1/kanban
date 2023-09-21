@@ -3,8 +3,9 @@ export enum AppRoute {
 	Boards = '/',
 }
 
-export enum TaskStatusMap {
+export enum TaskPriorityMap {
 	high = 'высший',
+	tall = 'высокий',
 	medium = 'средний',
 	common = 'обычный',
 	lower = 'на потом',

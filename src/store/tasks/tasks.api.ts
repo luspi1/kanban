@@ -81,6 +81,11 @@ export const tasksApi = createApi({
 			query: (id) => ({
 				url: `/task/${id}`,
 			}),
+			providesTags: () => [
+				{
+					type: 'Tasks',
+				},
+			],
 		}),
 		setTaskItem: build.mutation<null, TaskCard>({
 			query: (task) => ({

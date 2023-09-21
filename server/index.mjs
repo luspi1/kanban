@@ -99,6 +99,7 @@ const updateTask = (req, res) => {
 };
 
 
+
 const getBoardById = (req, res) => {
   const boardId = req.params.id;
   const foundBoard = boards.find(board => {

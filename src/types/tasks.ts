@@ -1,12 +1,16 @@
-export type TaskStatus = 'high' | 'common' | 'lower' | 'medium'
-export type TaskNameInputs = 'desc' | 'title'
+export type TaskPriority = 'high' | 'common' | 'lower' | 'medium' | 'tall'
+export type TaskDifficult = 'lower' | 'common' | 'high'
+export type TaskCategory = 'testing' | 'design' | 'programming' | 'layout'
+export type TaskNameInputs = 'desc' | 'title' | 'priority' | 'difficult' | 'category'
 
 export type TaskCard = {
 	id: string
-	title: TaskNameInputs
-	status: TaskStatus
+	title: string
+	priority: TaskPriority
+	difficult: TaskDifficult
+	category: TaskCategory
 	executor: string
-	desc: TaskNameInputs
+	desc: string
 }
 
 export type KanbanColumn = {
