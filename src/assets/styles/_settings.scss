@@ -78,20 +78,6 @@ select::-ms-expand {
   display: none;
 }
 
-.custom-select {
-  &__control {
-    cursor: pointer !important;
-    min-height: 35px !important;
-    height: 35px !important;
-  }
-
-  &__single-value,
-  &__placeholder {
-    padding-bottom: 4px;
-  }
-}
-
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -125,3 +111,5 @@ textarea {
 ._rotate {
   transform: rotate(180deg);
 }
+
+

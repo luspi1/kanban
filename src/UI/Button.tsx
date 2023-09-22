@@ -11,31 +11,31 @@ type ButtonProps = PropsWithChildren<{
 	color?: string
 	size?: string
 	weight?: string
+	height?: string
 	lineHeight?: string
 	$background?: string
 	radius?: string
-	border?: string
+	$border?: string
 	disabledState?: boolean
 }>
 
 const StyledButton = styled.button<ButtonProps>`
-	font-family: 'Montserrat', sans-serif;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	line-height: ${({ lineHeight }) => lineHeight ?? '20px'};
-	font-weight: ${({ weight }) => weight ?? '700'};
-	font-size: ${({ size }) => size ?? '14px'};
-	padding: ${({ padding }) => padding ?? '12px 22px'};
+	font-weight: ${({ weight }) => weight ?? '500'};
+	font-size: ${({ size }) => size ?? '15px'};
+	padding: ${({ padding }) => padding ?? '7px 15px'};
 	margin: ${({ $margin }) => $margin ?? '0'};
 	width: ${({ width }) => width ?? 'auto'};
-	color: ${({ color }) => color ?? '#ffffff'};
-	background-color: ${({ $background }) => $background ?? '#337390'};
+	height: ${({ height }) => height ?? '35px'};
+	color: ${({ color }) => color ?? '#064AB1'};
+	background-color: ${({ $background }) => $background ?? 'none'};
 	border-radius: ${({ radius }) => radius ?? '3px'};
-	border: ${({ border }) => border ?? '1px solid #337390'};
+	border: ${({ $border }) => $border ?? '1px solid #064AB1'};
 
 	${(props) =>
 		props.disabledState &&

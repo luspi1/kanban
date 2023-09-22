@@ -19,6 +19,8 @@ import Select from 'react-select'
 import { getValue } from 'src/helpers/utils'
 import { CategoryOptions, DifficultOptions, PriorityOptions } from 'src/modules/task-form/consts'
 import { type SelOption } from 'src/types/select'
+import cn from 'classnames'
+import { CheckboxList } from 'src/components/checkbox-list'
 
 type TaskFormProps = {
 	id: string | null
@@ -61,6 +63,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 		} else {
 			toast.error('Задача не найдена')
 		}
+		console.log(data)
 	}
 
 	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]
@@ -101,8 +104,8 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 					name='priority'
 					render={({ field: { onChange, value } }) => (
 						<Select
-							classNamePrefix='custom-select'
-							className={styles.statusSelect}
+							classNamePrefix='status-select'
+							className={cn('status-select', value)}
 							options={PriorityOptions}
 							value={getValue(value, PriorityOptions)}
 							onChange={(newValue) => {
@@ -115,34 +118,30 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 					control={control}
 					name='difficult'
 					render={({ field: { onChange, value } }) => (
-						<>
-							<Select
-								classNamePrefix='custom-select'
-								className={styles.statusSelect}
-								options={DifficultOptions}
-								value={getValue(value, DifficultOptions)}
-								onChange={(newValue) => {
-									onChange((newValue as SelOption).value)
-								}}
-							/>
-						</>
+						<Select
+							classNamePrefix='status-select'
+							className={cn('status-select', '_outlined', value)}
+							options={DifficultOptions}
+							value={getValue(value, DifficultOptions)}
+							onChange={(newValue) => {
+								onChange((newValue as SelOption).value)
+							}}
+						/>
 					)}
 				/>
 				<Controller
 					control={control}
 					name='category'
 					render={({ field: { onChange, value } }) => (
-						<>
-							<Select
-								classNamePrefix='custom-select'
-								className={styles.statusSelect}
-								options={CategoryOptions}
-								value={getValue(value, CategoryOptions)}
-								onChange={(newValue) => {
-									onChange((newValue as SelOption).value)
-								}}
-							/>
-						</>
+						<Select
+							classNamePrefix='status-select'
+							className={cn('status-select', 'category')}
+							options={CategoryOptions}
+							value={getValue(value, CategoryOptions)}
+							onChange={(newValue) => {
+								onChange((newValue as SelOption).value)
+							}}
+						/>
 					)}
 				/>
 			</div>
@@ -157,7 +156,15 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				errors={errors}
 				className={styles.descInput}
 			/>
-			<Button type='submit' $background='#00754A' $margin='auto 0 0 0' width='200px'>
+			<CheckboxList name='task_checkbox' control={control} />
+			<Button
+				type='submit'
+				$background='#00754A'
+				color='#ffffff'
+				$border='none'
+				$margin='auto 0 0 0'
+				width='200px'
+			>
 				Сохранить
 			</Button>
 		</form>
