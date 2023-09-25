@@ -11,18 +11,37 @@ export let tracks = [
             title: "Задача 4",
             priority: "lower",
             difficult: "common",
-            category: 'testing',
+            category: "testing",
             desc: "Duis aute irure dolor in reprehenderit in voluptate velit es",
-            executor: 'Андрей И.'
+            executor: "Андрей И.",
+            checkboxes: [
+              {
+                id: "1c",
+                title: "подпункт 1",
+                checked: false
+              },
+              {
+                id: "2c",
+                title: "подпункт 2",
+                checked: true
+              }
+            ]
           },
           {
             id: "5",
             title: "Задача 5",
             priority: "medium",
             difficult: "lower",
-            category: 'programming',
+            category: "programming",
             desc: "amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ",
-            executor: 'Петр К.'
+            executor: "Петр К.",
+            checkboxes: [
+              {
+                id: "3c",
+                title: "подзадача №123",
+                checked: false
+              }
+            ]
           }
         ]
       },
@@ -34,18 +53,26 @@ export let tracks = [
             title: "Задача 123",
             priority: "tall",
             difficult: "common",
-            category: 'testing',
+            category: "testing",
             desc: "Какое описание 1",
-            executor: 'Антон С.'
+            executor: "Антон С.",
+            checkboxes: []
           },
           {
             id: "12321",
             title: "Задача 1231",
             priority: "common",
             difficult: "high",
-            category: 'programming',
+            category: "programming",
             desc: "Описание задачи.",
-            executor: 'Игорь И.'
+            executor: "Игорь И.",
+            checkboxes: [
+              {
+                id: "4c",
+                title: "еще какая то подзадача",
+                checked: false
+              }
+            ]
           }
         ]
       },
@@ -57,9 +84,10 @@ export let tracks = [
             title: "Задача 124124",
             priority: "medium",
             difficult: "common",
-            category: 'layout',
+            category: "layout",
             desc: "СДЕЛАТЬ ЗАДАЧУ!",
-            executor: 'Светлана И.'
+            executor: "Светлана И.",
+            checkboxes: []
           }
         ]
       },
@@ -71,10 +99,17 @@ export let tracks = [
             title: "Задача 1",
             priority: "high",
             difficult: "lower",
-            category: 'programming',
+            category: "programming",
             desc: "Excepteur sint occaecat cupidatat",
-            executor: 'Ксения Н.'
-          },
+            executor: "Ксения Н.",
+            checkboxes: [
+              {
+                id: "5c",
+                title: "выполненная подзадача",
+                checked: true
+              }
+            ]
+          }
         ]
       }]
   },
@@ -90,18 +125,31 @@ export let tracks = [
             title: "Задача 4",
             priority: "lower",
             difficult: "common",
-            category: 'testing',
+            category: "testing",
             desc: "majority have suffered alteration in some form, by injected humour, or randomised wo adw daw daw daw daw ddawd",
-            executor: 'Сергей С.'
+            executor: "Сергей С.",
+            checkboxes: []
           },
           {
             id: "59",
             title: "Задача 5",
             priority: "medium",
             difficult: "high",
-            category: 'layout',
+            category: "layout",
             desc: "It is a long established fact that a reader will be distracted by the readable",
-            executor: 'Сергей А.'
+            executor: "Сергей А.",
+            checkboxes: [
+              {
+                id: "6c",
+                title: "подзадача distracted by the read",
+                checked: true
+              },
+              {
+                id: "7c",
+                title: "подзадача established fact that a ",
+                checked: false
+              }
+            ]
           }
         ]
       },
@@ -113,9 +161,10 @@ export let tracks = [
             title: "Задача 6",
             priority: "common",
             difficult: "common",
-            category: 'programming',
+            category: "programming",
             desc: " quis nostrud exercitation ullamco",
-            executor: 'Сергей Т.'
+            executor: "Сергей Т.",
+            checkboxes: []
           }
         ]
       },
@@ -127,9 +176,10 @@ export let tracks = [
             title: "Задача 124124",
             priority: "medium",
             difficult: "lower",
-            category: 'layout',
+            category: "layout",
             desc: "Снова описание",
-            executor: 'Дмитрий А.'
+            executor: "Дмитрий А.",
+            checkboxes: []
           }
         ]
       },
@@ -141,9 +191,16 @@ export let tracks = [
             title: "Задача 1",
             priority: "high",
             difficult: "common",
-            category: 'programming',
+            category: "programming",
             desc: "Еще одно описание",
-            executor: 'Дмитрий А.'
+            executor: "Дмитрий А.",
+            checkboxes: [
+              {
+                id: "8c",
+                title: "dwada da  established fact that a",
+                checked: false
+              }
+            ]
           }
         ]
       }]

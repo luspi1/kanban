@@ -1,4 +1,4 @@
-import { type FC, useRef, useState } from 'react'
+import React, { type FC, useEffect, useRef, useState } from 'react'
 import { type CheckboxItem } from 'src/types/checkbox'
 
 import styles from './index.module.scss'
@@ -9,14 +9,30 @@ import { useController, type UseControllerProps } from 'react-hook-form'
 
 type CheckboxListProps = {
 	title?: string
-	checkboxData?: CheckboxItem[]
+	checkboxData: CheckboxItem[] | []
 }
 export const CheckboxList: FC<CheckboxListProps & UseControllerProps> = (props) => {
-	const [checkboxes, setCheckboxes] = useState<CheckboxItem[] | null>(props.checkboxData ?? null)
+	const [checkboxes, setCheckboxes] = useState<CheckboxItem[] | []>(props.checkboxData ?? [])
 	const [isVisibleAddition, setIsVisibleAddition] = useState<boolean>(false)
 	const addCheckboxBtnRef = useRef<HTMLTextAreaElement>(null)
 
 	const { field } = useController(props)
+
+	const handleCheckboxValue = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+		const currentCheckbox = checkboxes.find((el) => el.id === id) as CheckboxItem
+		const filteredCheckboxes = checkboxes.filter((el) => el.id !== id)
+
+		const newCheckboxes = [
+			...filteredCheckboxes,
+			{
+				...currentCheckbox,
+				checked: !currentCheckbox.checked,
+			},
+		]
+
+		setCheckboxes(newCheckboxes)
+		field.onChange(newCheckboxes)
+	}
 
 	const addCheckbox = () => {
 		const inputAdditional = addCheckboxBtnRef.current
@@ -26,43 +42,49 @@ export const CheckboxList: FC<CheckboxListProps & UseControllerProps> = (props) 
 			return
 		}
 
-		if (checkboxes) {
-			setCheckboxes([
-				...checkboxes,
-				{
-					id: uid(inputAdditional?.value, currentIndex),
-					title: inputAdditional?.value ?? '',
-					checked: false,
-				},
-			])
-		} else {
-			setCheckboxes([
-				{
-					id: uid(inputAdditional?.value, currentIndex),
-					title: inputAdditional?.value ?? '',
-					checked: false,
-				},
-			])
+		const newCheckbox = {
+			id: uid(inputAdditional?.value, currentIndex),
+			title: inputAdditional?.value ?? '',
+			checked: false,
 		}
+
+		if (checkboxes) {
+			setCheckboxes([...checkboxes, { ...newCheckbox }])
+		} else {
+			setCheckboxes([{ ...newCheckbox }])
+		}
+
+		const copyNewCheckboxes = [...checkboxes, { ...newCheckbox }]
+		field.onChange(copyNewCheckboxes)
 
 		if (inputAdditional) {
 			inputAdditional.value = ''
 		}
 	}
 	const removeCheckbox = (id: string) => {
-		if (checkboxes) {
-			setCheckboxes(checkboxes.filter((el) => el.id !== id))
-		}
+		const newCheckboxes = checkboxes.filter((el) => el.id !== id)
+		setCheckboxes(newCheckboxes)
+		field.onChange(newCheckboxes)
 	}
+
+	useEffect(() => {
+		setCheckboxes(props.checkboxData)
+	}, [props.checkboxData])
+
 	return (
 		<div className={styles.checkboxList}>
 			<h5>{props.title ?? 'Чек-лист'}</h5>
 			<ul>
 				{checkboxes ? (
-					checkboxes.map((checkboxItem) => (
+					checkboxes.map((checkboxItem, index) => (
 						<li key={checkboxItem.id}>
 							<label>
-								<input {...field} type='checkbox' defaultChecked={checkboxItem.checked} />
+								<input
+									type='checkbox'
+									onChange={(e) => handleCheckboxValue(e, checkboxItem.id)}
+									checked={checkboxes[index].checked}
+									value={checkboxes[index].title}
+								/>
 								<span>{checkboxItem.title}</span>
 							</label>
 							<button type='button' onClick={() => removeCheckbox(checkboxItem.id)}>

@@ -1,3 +1,5 @@
+import { type CheckboxItem } from 'src/types/checkbox'
+
 export type TaskPriority = 'high' | 'common' | 'lower' | 'medium' | 'tall'
 export type TaskDifficult = 'lower' | 'common' | 'high'
 export type TaskCategory = 'testing' | 'design' | 'programming' | 'layout'
@@ -11,6 +13,7 @@ export type TaskCard = {
 	category: TaskCategory
 	executor: string
 	desc: string
+	checkboxes: CheckboxItem[] | []
 }
 
 export type KanbanColumn = {

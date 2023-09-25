@@ -5,7 +5,7 @@ import { useGetTaskByIdQuery, useSetTaskItemMutation } from 'src/store/tasks/tas
 import { CrossSvg } from 'src/UI/icons/crossSVG'
 import { useActions } from 'src/hooks/actions/actions'
 import { useAppSelector } from 'src/hooks/store'
-import { getActivityTaskForm } from 'src/store/task-form/task-form.selectors'
+import { getActivityTaskForm } from 'src/modules/task-form/store/task-form.selectors'
 import cnBind from 'classnames/bind'
 import { Controller, type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -48,6 +48,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			priority: 'common',
 			difficult: 'common',
 			category: 'testing',
+			checkboxes: [],
 		},
 	})
 
@@ -63,7 +64,6 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 		} else {
 			toast.error('Задача не найдена')
 		}
-		console.log(data)
 	}
 
 	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]
@@ -156,7 +156,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				errors={errors}
 				className={styles.descInput}
 			/>
-			<CheckboxList name='task_checkbox' control={control} />
+			<CheckboxList name='checkboxes' control={control} checkboxData={currentTask.checkboxes} />
 			<Button
 				type='submit'
 				$background='#00754A'

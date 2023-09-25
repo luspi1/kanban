@@ -1,14 +1,17 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { NameSpace } from 'src/helpers/consts'
+import { type CheckboxItem } from 'src/types/checkbox'
 
 type TaskFormState = {
 	currentTaskId: string | null
 	activityForm: boolean
+	checkboxes: CheckboxItem[] | []
 }
 
 const initialState: TaskFormState = {
 	currentTaskId: null,
 	activityForm: false,
+	checkboxes: [],
 }
 
 export const taskFormSlice = createSlice({

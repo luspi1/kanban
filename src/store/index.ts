@@ -3,7 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { tasksApi } from 'src/store/tasks/tasks.api'
 import { NameSpace } from 'src/helpers/consts'
 import { tasksReducer } from 'src/store/tasks/tasks.slice'
-import { taskFormReducer } from 'src/store/task-form/task-form.slice'
+import { taskFormReducer } from 'src/modules/task-form/store/task-form.slice'
 
 export const store = configureStore({
 	reducer: {

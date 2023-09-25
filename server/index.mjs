@@ -118,6 +118,7 @@ const getTaskById = (req, res) => {
   res.status(201).json(foundTask);
 };
 
+
 app.get("/api/v1/boards/:id/allColumns", getAllColumns);
 app.get("/api/v1/boards/:id/tracks", getAllTracks);
 app.get("/api/v1/boards/:id/titleColumns", getTitleColumns);
