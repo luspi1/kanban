@@ -6,6 +6,7 @@ import { Button } from 'src/UI/Button'
 import { uid } from 'react-uid'
 import { DeleteSVG } from 'src/UI/icons/deleteSVG'
 import { useController, type UseControllerProps } from 'react-hook-form'
+import { calculateCheckboxes } from 'src/helpers/utils'
 
 type CheckboxListProps = {
 	title?: string
@@ -33,7 +34,6 @@ export const CheckboxList: FC<CheckboxListProps & UseControllerProps> = (props) 
 		setCheckboxes(newCheckboxes)
 		field.onChange(newCheckboxes)
 	}
-
 	const addCheckbox = () => {
 		const inputAdditional = addCheckboxBtnRef.current
 		const currentIndex = checkboxes?.length
@@ -69,11 +69,14 @@ export const CheckboxList: FC<CheckboxListProps & UseControllerProps> = (props) 
 
 	useEffect(() => {
 		setCheckboxes(props.checkboxData)
+		setIsVisibleAddition(false)
 	}, [props.checkboxData])
 
 	return (
 		<div className={styles.checkboxList}>
-			<h5>{props.title ?? 'Чек-лист'}</h5>
+			<h5>
+				{props.title ?? 'Чек-лист'} ({calculateCheckboxes(checkboxes)} / {checkboxes.length})
+			</h5>
 			<ul>
 				{checkboxes ? (
 					checkboxes.map((checkboxItem, index) => (

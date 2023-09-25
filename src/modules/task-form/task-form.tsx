@@ -86,6 +86,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			className={cx(styles.taskForm, { _active: activityForm })}
 			onSubmit={handleSubmit(onSubmit)}
 		>
+			// TODO: добавить сброс значений при закрытии модалки формы
 			<button className={styles.closeFormBtn} onClick={() => changeActivity()} type='button'>
 				<CrossSvg />
 			</button>
@@ -97,7 +98,6 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				className={styles.titleInput}
 				placeholder='Введите название задачи'
 			/>
-
 			<div className={styles.taskStatuses}>
 				<Controller
 					control={control}
@@ -145,7 +145,6 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 					)}
 				/>
 			</div>
-
 			<h6>
 				Исполнитель: <span>{currentTask?.executor ?? 'не назначен'}</span>
 			</h6>

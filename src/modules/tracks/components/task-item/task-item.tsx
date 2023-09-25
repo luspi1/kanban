@@ -15,6 +15,8 @@ import { ExecutorSvg } from 'src/UI/icons/executorSVG'
 import { CommentSvg } from 'src/UI/icons/commentSVG'
 import { CalendarSvg } from 'src/UI/icons/calendarSVG'
 import { CheckProgressSvg } from 'src/UI/icons/checkProgressSVG'
+import { type CheckboxItem } from 'src/types/checkbox'
+import { calculateCheckboxes, calculateCheckboxesPercent } from 'src/helpers/utils'
 
 type TaskCardProps = {
 	id: string
@@ -23,10 +25,19 @@ type TaskCardProps = {
 	index: number
 	desc: string
 	executor: string
+	checkboxes: CheckboxItem[] | []
 }
 
 const cx = cnBind.bind(styles)
-export const TaskItem: FC<TaskCardProps> = ({ title, priority, id, index, desc, executor }) => {
+export const TaskItem: FC<TaskCardProps> = ({
+	title,
+	priority,
+	id,
+	index,
+	desc,
+	executor,
+	checkboxes,
+}) => {
 	const { setCurrentTaskId } = useActions()
 	const getStyle = (
 		style: DraggingStyle | NotDraggingStyle | undefined,
@@ -75,10 +86,10 @@ export const TaskItem: FC<TaskCardProps> = ({ title, priority, id, index, desc, 
 					<div className={styles.taskProgress}>
 						<p>
 							<CheckProgressSvg />
-							<span>2</span>/<span>10</span>
+							<span>{calculateCheckboxes(checkboxes)}</span>/<span>{checkboxes.length}</span>
 						</p>
 						<p>
-							<span>20</span>%
+							<span>{calculateCheckboxesPercent(checkboxes)}</span>%
 						</p>
 					</div>
 				</div>

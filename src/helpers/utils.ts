@@ -1,6 +1,7 @@
 import { type TaskCard } from 'src/types/tasks'
 import { type DraggableLocation } from 'react-beautiful-dnd'
 import { type SelOption } from 'src/types/select'
+import { CheckboxItem } from 'src/types/checkbox'
 
 export const reorder = (list: TaskCard[], startIndex: number, endIndex: number) => {
 	const result = Array.from(list)
@@ -38,4 +39,24 @@ export const getRandomColor = () => {
 
 export const getValue = (value: string, options: SelOption[]) => {
 	return value ? options.find((option) => option.value === value) : ''
+}
+
+// расчет выполненных подзадач (чекбоксы)
+
+export const calculateCheckboxes = (checkboxes: CheckboxItem[]) => {
+	let checkedCounter = 0
+
+	checkboxes.forEach((el) => {
+		el.checked && checkedCounter++
+	})
+
+	return checkedCounter
+}
+// расчет выполненных подзадач процентах (чекбоксы)
+
+export const calculateCheckboxesPercent = (checkboxes: CheckboxItem[]) => {
+	const completedCheckboxesAmount = calculateCheckboxes(checkboxes)
+	const allCheckboxesAmount = checkboxes.length
+	const result = Math.round((completedCheckboxesAmount / allCheckboxesAmount) * 100)
+	return result || 0
 }

@@ -13,16 +13,18 @@
   }
 
   li {
-    padding: 8px;
     height: 35px;
     border-radius: 5px;
     transition: all .3s;
     cursor: pointer;
     width: 100%;
     display: flex;
+    align-items: center;
 
 
     label {
+      padding: 8px;
+
       width: 100%;
       cursor: pointer;
       display: flex;
@@ -53,7 +55,8 @@
     button {
 
       margin-left: auto;
-      width: 17px;
+      margin-right: 8px;
+      width: 19px;
       height: 17px;
       svg {
         width: 100%;
