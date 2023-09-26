@@ -3,7 +3,7 @@ import { type CheckboxItem } from 'src/types/checkbox'
 export type TaskPriority = 'high' | 'common' | 'lower' | 'medium' | 'tall'
 export type TaskDifficult = 'lower' | 'common' | 'high'
 export type TaskCategory = 'testing' | 'design' | 'programming' | 'layout'
-export type TaskNameInputs = 'desc' | 'title' | 'priority' | 'difficult' | 'category'
+export type TaskNameInputs = 'desc' | 'title' | 'priority' | 'difficult' | 'category' | 'checkboxes'
 
 export type TaskCard = {
 	id: string

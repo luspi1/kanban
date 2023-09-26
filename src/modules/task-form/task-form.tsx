@@ -30,7 +30,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 
 	const { data: currentTask } = useGetTaskByIdQuery(id ?? '0')
 	const [setTaskItem] = useSetTaskItemMutation()
-	const { changeActivity } = useActions()
+	const { changeActivity, setCheckboxes } = useActions()
 	const activityForm = useAppSelector(getActivityTaskForm)
 
 	const {
@@ -51,7 +51,14 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			checkboxes: [],
 		},
 	})
+	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]
 
+	const closeFormHandler = () => {
+		changeActivity()
+		inputNamesArr.forEach((name) => {
+			setValue(name, currentTask?.[name])
+		})
+	}
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		if (currentTask) {
 			const newTask: TaskCard = {
@@ -66,13 +73,13 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 		}
 	}
 
-	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]
-
 	useEffect(() => {
 		inputNamesArr.forEach((name) => {
 			setValue(name, currentTask?.[name])
 		})
-	}, [currentTask])
+
+		setCheckboxes(currentTask?.checkboxes ?? [])
+	}, [currentTask, activityForm])
 
 	if (!currentTask) {
 		return (
@@ -86,8 +93,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			className={cx(styles.taskForm, { _active: activityForm })}
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			// TODO: добавить сброс значений при закрытии модалки формы
-			<button className={styles.closeFormBtn} onClick={() => changeActivity()} type='button'>
+			<button className={styles.closeFormBtn} onClick={closeFormHandler} type='button'>
 				<CrossSvg />
 			</button>
 			<ControlledField
@@ -155,7 +161,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				errors={errors}
 				className={styles.descInput}
 			/>
-			<CheckboxList name='checkboxes' control={control} checkboxData={currentTask.checkboxes} />
+			<CheckboxList name='checkboxes' control={control} />
 			<Button
 				type='submit'
 				$background='#00754A'
