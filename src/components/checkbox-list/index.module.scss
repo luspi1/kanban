@@ -67,16 +67,7 @@
     }
   }
 
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #D0D5DF;
-    border-radius: 3px;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    outline: none;
-  }
+
 }
 
 
@@ -85,11 +76,4 @@
   pointer-events: none;
 }
 
-.additionalControllers {
-  display: flex;
-  margin-top: 10px;
 
-  button {
-    margin-right: 10px;
-  }
-}

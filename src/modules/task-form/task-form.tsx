@@ -20,7 +20,8 @@ import { getValue } from 'src/helpers/utils'
 import { CategoryOptions, DifficultOptions, PriorityOptions } from 'src/modules/task-form/consts'
 import { type SelOption } from 'src/types/select'
 import cn from 'classnames'
-import { CheckboxList } from 'src/components/checkbox-list'
+import { CheckboxList } from 'src/components/checkbox-list/checkbox-list'
+import { TaskDropzone } from 'src/modules/task-form/components/task-dropzone/task-dropzone'
 
 type TaskFormProps = {
 	id: string | null
@@ -161,6 +162,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				errors={errors}
 				className={styles.descInput}
 			/>
+			<TaskDropzone />
 			<CheckboxList name='checkboxes' control={control} />
 			<Button
 				type='submit'

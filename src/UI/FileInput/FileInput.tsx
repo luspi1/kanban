@@ -2,7 +2,7 @@ import cn from 'classnames'
 import React, { type FC, type HTMLAttributes, useCallback, useEffect, useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { type Control, Controller } from 'react-hook-form'
-import { FilePreview } from 'src/UI/FilePreview/FilePreview'
+import { FilePreview } from 'src/components/FilePreview/FilePreview'
 import styles from './index.module.scss'
 
 type FileInputProps = {

@@ -1,0 +1,40 @@
+.mainDropzone {
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 10px 20px 20px 20px;
+
+  h4 {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #BFBDC7;
+    margin-bottom: 5px;
+    pointer-events: none;
+  }
+
+}
+
+.dropzoneBtn {
+  cursor: pointer;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #337390;
+  margin-bottom: 12px;
+}
+
+
+.filesList {
+  display: flex;
+
+  li {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    width: 40px;
+    height: 40px;
+  }
+}

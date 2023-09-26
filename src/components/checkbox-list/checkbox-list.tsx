@@ -1,41 +1,22 @@
-import React, { type FC, useEffect, useRef, useState } from 'react'
+import React, { type FC, useEffect } from 'react'
 
 import styles from './index.module.scss'
-import { Button } from 'src/UI/Button'
 import { DeleteSVG } from 'src/UI/icons/deleteSVG'
 import { useController, type UseControllerProps } from 'react-hook-form'
 import { calculateCheckboxes } from 'src/helpers/utils'
 import { useAppSelector } from 'src/hooks/store'
 import { getCheckboxes } from 'src/modules/task-form/store/task-form.selectors'
 import { useActions } from 'src/hooks/actions/actions'
+import { CheckboxAdditional } from 'src/components/checkbox-list/components/checkbox-additional/checkbox-additional'
 
 type CheckboxListProps = {
 	title?: string
 }
 export const CheckboxList: FC<CheckboxListProps & UseControllerProps> = (props) => {
-	// const [checkboxes, setCheckboxes] = useState<CheckboxItem[] | []>(props.checkboxData ?? [])
-
 	const checkboxes = useAppSelector(getCheckboxes)
-	const { removeCheckboxById, addCheckbox, changeCheckboxById } = useActions()
-
-	const [isVisibleAddition, setIsVisibleAddition] = useState<boolean>(false)
-	const addCheckboxBtnRef = useRef<HTMLTextAreaElement>(null)
+	const { removeCheckboxById, changeCheckboxById } = useActions()
 
 	const { field } = useController(props)
-
-	const addCheckboxHandler = () => {
-		const inputAdditional = addCheckboxBtnRef.current
-
-		if (!inputAdditional?.value) {
-			return
-		}
-
-		addCheckbox(inputAdditional.value)
-
-		if (inputAdditional) {
-			inputAdditional.value = ''
-		}
-	}
 
 	useEffect(() => {
 		field.onChange(checkboxes)
@@ -68,31 +49,7 @@ export const CheckboxList: FC<CheckboxListProps & UseControllerProps> = (props) 
 					<li className={styles.noItemsDesc}>Нет добавленных пунктов</li>
 				)}
 			</ul>
-			{isVisibleAddition ? (
-				<div className={styles.additionBlock}>
-					<textarea placeholder='Добавить еще один пункт' ref={addCheckboxBtnRef} />
-					<div className={styles.additionalControllers}>
-						<Button
-							color='#00754A'
-							$border='1px solid #00754A'
-							type='button'
-							onClick={addCheckboxHandler}
-						>
-							Добавить
-						</Button>
-						<Button
-							color='#920303'
-							$border='1px solid #920303'
-							onClick={() => setIsVisibleAddition(!isVisibleAddition)}
-							type='button'
-						>
-							Отмена
-						</Button>
-					</div>
-				</div>
-			) : (
-				<Button onClick={() => setIsVisibleAddition(!isVisibleAddition)}>Добавить пункт</Button>
-			)}
+			<CheckboxAdditional />
 		</div>
 	)
 }
