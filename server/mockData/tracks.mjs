@@ -25,7 +25,13 @@ export let tracks = [
                 title: "подпункт 2",
                 checked: true
               }
-            ]
+            ],
+            photos: [],
+            parentTask: { id: "5", title: "Задача 5" },
+            dependencyTask: [{ id: "5", title: "Задача 5" }, {
+              id: "312",
+              title: "Задача 123"
+            }]
           },
           {
             id: "5",
@@ -41,7 +47,13 @@ export let tracks = [
                 title: "подзадача №123",
                 checked: false
               }
-            ]
+            ],
+            photos: [],
+            parentTask: { id: "12321", title: "Задача 1231" },
+            dependencyTask: [{ id: "3322", title: "Задача 124124" }, {
+              id: "312",
+              title: "Задача 123"
+            }]
           }
         ]
       },
@@ -56,7 +68,10 @@ export let tracks = [
             category: "testing",
             desc: "Какое описание 1",
             executor: "Антон С.",
-            checkboxes: []
+            checkboxes: [],
+            photos: [],
+            parentTask: null,
+            dependencyTask: []
           },
           {
             id: "12321",
@@ -72,7 +87,10 @@ export let tracks = [
                 title: "еще какая то подзадача",
                 checked: false
               }
-            ]
+            ],
+            photos: [],
+            parentTask: null,
+            dependencyTask: []
           }
         ]
       },
@@ -87,7 +105,10 @@ export let tracks = [
             category: "layout",
             desc: "СДЕЛАТЬ ЗАДАЧУ!",
             executor: "Светлана И.",
-            checkboxes: []
+            checkboxes: [],
+            photos: [],
+            parentTask: { id: "12321", title: "Задача 1231" },
+            dependencyTask: []
           }
         ]
       },
@@ -108,7 +129,13 @@ export let tracks = [
                 title: "выполненная подзадача",
                 checked: true
               }
-            ]
+            ],
+            photos: [],
+            parentTask: { id: "56", title: "Задача 4" },
+            dependencyTask: [{ id: "56", title: "Задача 4" }, {
+              id: "1",
+              title: "Задача 1"
+            }]
           }
         ]
       }]
@@ -128,11 +155,14 @@ export let tracks = [
             category: "testing",
             desc: "majority have suffered alteration in some form, by injected humour, or randomised wo adw daw daw daw daw ddawd",
             executor: "Сергей С.",
-            checkboxes: []
+            checkboxes: [],
+            photos: [],
+            parentTask: null,
+            dependencyTask: [{ id: "1", title: "Задача 1" }]
           },
           {
             id: "59",
-            title: "Задача 5",
+            title: "Интересная задача",
             priority: "medium",
             difficult: "high",
             category: "layout",
@@ -149,7 +179,13 @@ export let tracks = [
                 title: "подзадача established fact that a ",
                 checked: false
               }
-            ]
+            ],
+            photos: [],
+            parentTask: { id: "5", title: "Задача 5" },
+            dependencyTask: [{ id: "5", title: "Задача 5" }, {
+              id: "87",
+              title: "Задача 124124"
+            }]
           }
         ]
       },
@@ -164,7 +200,10 @@ export let tracks = [
             category: "programming",
             desc: " quis nostrud exercitation ullamco",
             executor: "Сергей Т.",
-            checkboxes: []
+            checkboxes: [],
+            photos: [],
+            parentTask: { id: "87", title: "Задача 124124" },
+            dependencyTask: []
           }
         ]
       },
@@ -179,7 +218,10 @@ export let tracks = [
             category: "layout",
             desc: "Снова описание",
             executor: "Дмитрий А.",
-            checkboxes: []
+            checkboxes: [],
+            photos: [],
+            parentTask: null,
+            dependencyTask: []
           }
         ]
       },
@@ -200,7 +242,10 @@ export let tracks = [
                 title: "dwada da  established fact that a",
                 checked: false
               }
-            ]
+            ],
+            photos: [],
+            parentTask: null,
+            dependencyTask: [{ id: "87", title: "Задача 124124" }]
           }
         ]
       }]

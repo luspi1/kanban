@@ -5,7 +5,7 @@ import { useGetTaskByIdQuery, useSetTaskItemMutation } from 'src/store/tasks/tas
 import { CrossSvg } from 'src/UI/icons/crossSVG'
 import { useActions } from 'src/hooks/actions/actions'
 import { useAppSelector } from 'src/hooks/store'
-import { getActivityTaskForm } from 'src/modules/task-form/store/task-form.selectors'
+import { getActivityTaskForm, getPhotos } from 'src/modules/task-form/store/task-form.selectors'
 import cnBind from 'classnames/bind'
 import { Controller, type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -22,6 +22,7 @@ import { type SelOption } from 'src/types/select'
 import cn from 'classnames'
 import { CheckboxList } from 'src/components/checkbox-list/checkbox-list'
 import { TaskDropzone } from 'src/modules/task-form/components/task-dropzone/task-dropzone'
+import { DependentTasks } from 'src/modules/task-form/components/dependent-tasks/dependent-tasks'
 
 type TaskFormProps = {
 	id: string | null
@@ -31,8 +32,9 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 
 	const { data: currentTask } = useGetTaskByIdQuery(id ?? '0')
 	const [setTaskItem] = useSetTaskItemMutation()
-	const { changeActivity, setCheckboxes } = useActions()
+	const { changeActivity, setCheckboxes, setPhotoFiles } = useActions()
 	const activityForm = useAppSelector(getActivityTaskForm)
+	const photosForm = useAppSelector(getPhotos)
 
 	const {
 		handleSubmit,
@@ -50,10 +52,10 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			difficult: 'common',
 			category: 'testing',
 			checkboxes: [],
+			photos: [],
 		},
 	})
 	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]
-
 	const closeFormHandler = () => {
 		changeActivity()
 		inputNamesArr.forEach((name) => {
@@ -65,6 +67,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			const newTask: TaskCard = {
 				...currentTask,
 				...data,
+				photos: photosForm,
 			}
 			setTaskItem(newTask)
 				.then(() => changeActivity())
@@ -80,6 +83,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 		})
 
 		setCheckboxes(currentTask?.checkboxes ?? [])
+		setPhotoFiles(currentTask?.photos ?? [])
 	}, [currentTask, activityForm])
 
 	if (!currentTask) {
@@ -163,6 +167,9 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 				className={styles.descInput}
 			/>
 			<TaskDropzone />
+
+			<DependentTasks currentTask={currentTask} />
+
 			<CheckboxList name='checkboxes' control={control} />
 			<Button
 				type='submit'

@@ -11,7 +11,8 @@ export const store = configureStore({
 		[NameSpace.Tasks]: tasksReducer,
 		[NameSpace.TaskForm]: taskFormReducer,
 	},
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tasksApi.middleware),
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({ serializableCheck: false }).concat(tasksApi.middleware),
 })
 
 setupListeners(store.dispatch)

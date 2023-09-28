@@ -1,10 +1,11 @@
 .mainDropzone {
-  background-color: #fff;
+  background-color: #F2F2F2;;
   border-radius: 3px;
   padding: 10px 20px 20px 20px;
+  margin-bottom: 20px;
 
-  h4 {
-    font-family: 'Montserrat';
+  p {
+    font-family: 'Open Sans', sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
@@ -15,26 +16,52 @@
 
 }
 
-.dropzoneBtn {
-  cursor: pointer;
-  font-family: 'Montserrat';
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: #337390;
-  margin-bottom: 12px;
+
+.innerDropzone {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.dropzoneField {
+  padding: 10px;
+  max-width: 265px;
+  height: 100px;
+
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0D77E7;
+  border-radius: 3px;
+
+
+  svg {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
+}
+
+.dropzoneDownload {
+  p {
+    color: #000000;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
 }
 
 
 .filesList {
   display: flex;
+  min-height: 80px;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 
   li {
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
-
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
   }
 }

@@ -2,17 +2,20 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { NameSpace } from 'src/helpers/consts'
 import { type CheckboxItem } from 'src/types/checkbox'
 import { uid } from 'react-uid'
+import { type FileWithPreview } from 'src/types/files'
 
 type TaskFormState = {
 	currentTaskId: string | null
 	activityForm: boolean
 	checkboxes: CheckboxItem[] | []
+	photos: FileWithPreview[] | []
 }
 
 const initialState: TaskFormState = {
 	currentTaskId: null,
 	activityForm: false,
 	checkboxes: [],
+	photos: [],
 }
 
 export const taskFormSlice = createSlice({
@@ -29,7 +32,6 @@ export const taskFormSlice = createSlice({
 		setCheckboxes: (state, action: PayloadAction<CheckboxItem[]>) => {
 			state.checkboxes = action.payload
 		},
-
 		addCheckbox: (state, action: PayloadAction<string>) => {
 			const currentIndex = state.checkboxes.length
 			const newCheckbox: CheckboxItem = {
@@ -49,6 +51,18 @@ export const taskFormSlice = createSlice({
 		},
 		removeCheckboxById: (state, action: PayloadAction<string>) => {
 			state.checkboxes = state.checkboxes.filter((el) => el.id !== action.payload)
+		},
+		setPhotoFiles: (state, action: PayloadAction<FileWithPreview[]>) => {
+			state.photos = action.payload
+		},
+		removePhotoByPreview: (state, action: PayloadAction<string>) => {
+			state.photos = state.photos.filter((photo) => photo.preview !== action.payload)
+		},
+		addPhotoFiles: (state, action: PayloadAction<File[]>) => {
+			const preparedFiles: FileWithPreview[] = action.payload.map((file) =>
+				Object.assign(file, { preview: URL.createObjectURL(file) })
+			)
+			state.photos = [...state.photos, ...preparedFiles]
 		},
 	},
 })

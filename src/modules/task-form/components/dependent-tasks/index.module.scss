@@ -1,0 +1,18 @@
+.dependentTasks {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #D0D5DF;
+
+  p {
+    span {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #064AB1;
+      margin-right: 15px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+}

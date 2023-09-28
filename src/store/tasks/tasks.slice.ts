@@ -16,7 +16,6 @@ export const tasksSlice = createSlice({
 	reducers: {
 		setAllTasks: (state, action: PayloadAction<TaskCard[]>) => {
 			state.tasks = action.payload
-			console.log(action.payload)
 		},
 	},
 })
