@@ -9,7 +9,7 @@ import {
 	type DraggingStyle,
 	type NotDraggingStyle,
 } from 'react-beautiful-dnd'
-import { type TaskPriority } from 'src/types/tasks'
+import { type CommentItem, type TaskPriority } from 'src/types/tasks'
 import { useActions } from 'src/hooks/actions/actions'
 import { ExecutorSvg } from 'src/UI/icons/executorSVG'
 import { CommentSvg } from 'src/UI/icons/commentSVG'
@@ -26,6 +26,7 @@ type TaskCardProps = {
 	desc: string
 	executor: string
 	checkboxes: CheckboxItem[] | []
+	comments: CommentItem[] | []
 }
 
 const cx = cnBind.bind(styles)
@@ -37,6 +38,7 @@ export const TaskItem: FC<TaskCardProps> = ({
 	desc,
 	executor,
 	checkboxes,
+	comments,
 }) => {
 	const { setCurrentTaskId } = useActions()
 	const getStyle = (
@@ -76,7 +78,7 @@ export const TaskItem: FC<TaskCardProps> = ({
 						</p>
 						<span>
 							<CommentSvg />
-							22
+							{comments.length}
 						</span>
 					</div>
 					<p className={styles.taskDate}>

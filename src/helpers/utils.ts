@@ -1,7 +1,7 @@
 import { type TaskCard } from 'src/types/tasks'
 import { type DraggableLocation } from 'react-beautiful-dnd'
 import { type SelOption } from 'src/types/select'
-import { CheckboxItem } from 'src/types/checkbox'
+import { type CheckboxItem } from 'src/types/checkbox'
 
 export const reorder = (list: TaskCard[], startIndex: number, endIndex: number) => {
 	const result = Array.from(list)
@@ -59,4 +59,18 @@ export const calculateCheckboxesPercent = (checkboxes: CheckboxItem[]) => {
 	const allCheckboxesAmount = checkboxes.length
 	const result = Math.round((completedCheckboxesAmount / allCheckboxesAmount) * 100)
 	return result || 0
+}
+
+export const formatDate = (date: Date) => {
+	if (date) {
+		const newDate = new Date(date)
+
+		return newDate.toLocaleString('ru', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+		})
+	}
 }

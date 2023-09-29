@@ -31,7 +31,27 @@ export let tracks = [
             dependencyTask: [{ id: "5", title: "Задача 5" }, {
               id: "312",
               title: "Задача 123"
-            }]
+            }],
+            comments: [
+              {
+                id: "c1",
+                time: "Fri Sep 29 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "1u",
+                  name: "Андрей И."
+                },
+                text: "Поясните по задаче..."
+              },
+              {
+                id: "c2",
+                time: "Fri Sep 23 2023 16:11:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "2u",
+                  name: "Антон С."
+                },
+                text: "тут и так все ясно"
+              }
+            ]
           },
           {
             id: "5",
@@ -53,7 +73,18 @@ export let tracks = [
             dependencyTask: [{ id: "3322", title: "Задача 124124" }, {
               id: "312",
               title: "Задача 123"
-            }]
+            }],
+            comments: [
+              {
+                id: "c3",
+                time: "Fri Sep 21 2022 16:33:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "3u",
+                  name: "Светлана И."
+                },
+                text: "постараюсь сделать сегодня"
+              }
+            ]
           }
         ]
       },
@@ -71,7 +102,8 @@ export let tracks = [
             checkboxes: [],
             photos: [],
             parentTask: null,
-            dependencyTask: []
+            dependencyTask: [],
+            comments: []
           },
           {
             id: "12321",
@@ -90,7 +122,18 @@ export let tracks = [
             ],
             photos: [],
             parentTask: null,
-            dependencyTask: []
+            dependencyTask: [],
+            comments: [
+              {
+                id: "c4",
+                time: "Fri Sep 21 2022 16:33:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "4u",
+                  name: "Ксения Н."
+                },
+                text: "ок"
+              }
+            ]
           }
         ]
       },
@@ -108,7 +151,18 @@ export let tracks = [
             checkboxes: [],
             photos: [],
             parentTask: { id: "12321", title: "Задача 1231" },
-            dependencyTask: []
+            dependencyTask: [],
+            comments: [
+              {
+                id: "c5",
+                time: "Fri Sep 21 2022 16:33:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "5u",
+                  name: "Сергей С."
+                },
+                text: "отдайте задачу дизайнеру на доработку"
+              }
+            ]
           }
         ]
       },
@@ -135,7 +189,8 @@ export let tracks = [
             dependencyTask: [{ id: "56", title: "Задача 4" }, {
               id: "1",
               title: "Задача 1"
-            }]
+            }],
+            comments: []
           }
         ]
       }]
@@ -158,7 +213,8 @@ export let tracks = [
             checkboxes: [],
             photos: [],
             parentTask: null,
-            dependencyTask: [{ id: "1", title: "Задача 1" }]
+            dependencyTask: [{ id: "1", title: "Задача 1" }],
+            comments: []
           },
           {
             id: "59",
@@ -185,7 +241,36 @@ export let tracks = [
             dependencyTask: [{ id: "5", title: "Задача 5" }, {
               id: "87",
               title: "Задача 124124"
-            }]
+            }],
+            comments: [
+              {
+                id: "c6",
+                time: "Fri Sep 21 2022 16:31:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "7u",
+                  name: "Сергей Т."
+                },
+                text: "quis nostrud exercitation ullamco"
+              },
+              {
+                id: "c7",
+                time: "Fri Sep 21 2022 16:34:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "8u",
+                  name: "Игорь И."
+                },
+                text: "Lorem ipsum dolor sit amet, consectetur"
+              },
+              {
+                id: "c8",
+                time: "Fri Sep 21 2022 16:38:05 GMT+0300 (Москва, стандартное время)",
+                user: {
+                  id: "8u",
+                  name: "Игорь И."
+                },
+                text: " Excepteur sint occaecat"
+              }
+            ]
           }
         ]
       },
@@ -203,7 +288,8 @@ export let tracks = [
             checkboxes: [],
             photos: [],
             parentTask: { id: "87", title: "Задача 124124" },
-            dependencyTask: []
+            dependencyTask: [],
+            comments: []
           }
         ]
       },
@@ -221,7 +307,8 @@ export let tracks = [
             checkboxes: [],
             photos: [],
             parentTask: null,
-            dependencyTask: []
+            dependencyTask: [],
+            comments: []
           }
         ]
       },
@@ -245,7 +332,8 @@ export let tracks = [
             ],
             photos: [],
             parentTask: null,
-            dependencyTask: [{ id: "87", title: "Задача 124124" }]
+            dependencyTask: [{ id: "87", title: "Задача 124124" }],
+            comments: []
           }
         ]
       }]

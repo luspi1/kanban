@@ -29,6 +29,8 @@ export type TaskCard = {
 }
 
 export type CommentItem = {
+	id: string
+	time: Date
 	user: User
 	text: string
 }

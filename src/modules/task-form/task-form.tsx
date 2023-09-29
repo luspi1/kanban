@@ -23,6 +23,7 @@ import cn from 'classnames'
 import { CheckboxList } from 'src/components/checkbox-list/checkbox-list'
 import { TaskDropzone } from 'src/modules/task-form/components/task-dropzone/task-dropzone'
 import { DependentTasks } from 'src/modules/task-form/components/dependent-tasks/dependent-tasks'
+import { TaskComments } from 'src/modules/task-form/components/task-comments/task-comments'
 
 type TaskFormProps = {
 	id: string | null
@@ -171,6 +172,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			<DependentTasks currentTask={currentTask} />
 
 			<CheckboxList name='checkboxes' control={control} />
+			<TaskComments currentTask={currentTask} />
 			<Button
 				type='submit'
 				$background='#00754A'
