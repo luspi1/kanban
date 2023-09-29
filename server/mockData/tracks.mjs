@@ -9,6 +9,7 @@ export let tracks = [
           {
             id: "4",
             title: "Задача 4",
+            startDate: "Fri Sep 20 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "lower",
             difficult: "common",
             category: "testing",
@@ -56,6 +57,7 @@ export let tracks = [
           {
             id: "5",
             title: "Задача 5",
+            startDate: "Fri Sep 21 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "medium",
             difficult: "lower",
             category: "programming",
@@ -94,6 +96,7 @@ export let tracks = [
           {
             id: "312",
             title: "Задача 123",
+            startDate: "Fri Sep 15 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "tall",
             difficult: "common",
             category: "testing",
@@ -107,6 +110,7 @@ export let tracks = [
           },
           {
             id: "12321",
+            startDate: "Fri Sep 11 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             title: "Задача 1231",
             priority: "common",
             difficult: "high",
@@ -143,6 +147,7 @@ export let tracks = [
           {
             id: "3322",
             title: "Задача 124124",
+            startDate: "Fri Sep 23 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "medium",
             difficult: "common",
             category: "layout",
@@ -172,6 +177,7 @@ export let tracks = [
           {
             id: "1",
             title: "Задача 1",
+            startDate: "Fri Sep 19 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "high",
             difficult: "lower",
             category: "programming",
@@ -205,6 +211,7 @@ export let tracks = [
           {
             id: "56",
             title: "Задача 4",
+            startDate: "Fri Sep 10 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "lower",
             difficult: "common",
             category: "testing",
@@ -219,6 +226,7 @@ export let tracks = [
           {
             id: "59",
             title: "Интересная задача",
+            startDate: "Fri Sep 20 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "medium",
             difficult: "high",
             category: "layout",
@@ -280,6 +288,7 @@ export let tracks = [
           {
             id: "66",
             title: "Задача 6",
+            startDate: "Fri Sep 24 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "common",
             difficult: "common",
             category: "programming",
@@ -299,6 +308,7 @@ export let tracks = [
           {
             id: "87",
             title: "Задача 124124",
+            startDate: "Fri Sep 23 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "medium",
             difficult: "lower",
             category: "layout",
@@ -318,6 +328,7 @@ export let tracks = [
           {
             id: "96",
             title: "Задача 1",
+            startDate: "Fri Sep 27 2023 16:36:05 GMT+0300 (Москва, стандартное время)",
             priority: "high",
             difficult: "common",
             category: "programming",

@@ -16,7 +16,7 @@ import { CommentSvg } from 'src/UI/icons/commentSVG'
 import { CalendarSvg } from 'src/UI/icons/calendarSVG'
 import { CheckProgressSvg } from 'src/UI/icons/checkProgressSVG'
 import { type CheckboxItem } from 'src/types/checkbox'
-import { calculateCheckboxes, calculateCheckboxesPercent } from 'src/helpers/utils'
+import { calculateCheckboxes, calculateCheckboxesPercent, formatDate } from 'src/helpers/utils'
 
 type TaskCardProps = {
 	id: string
@@ -27,6 +27,7 @@ type TaskCardProps = {
 	executor: string
 	checkboxes: CheckboxItem[] | []
 	comments: CommentItem[] | []
+	startDate: Date
 }
 
 const cx = cnBind.bind(styles)
@@ -39,6 +40,7 @@ export const TaskItem: FC<TaskCardProps> = ({
 	executor,
 	checkboxes,
 	comments,
+	startDate,
 }) => {
 	const { setCurrentTaskId } = useActions()
 	const getStyle = (
@@ -83,7 +85,13 @@ export const TaskItem: FC<TaskCardProps> = ({
 					</div>
 					<p className={styles.taskDate}>
 						<CalendarSvg />
-						<span>22.03.2023 - 25.04.2023</span>
+						<span>
+							{formatDate(startDate, {
+								year: 'numeric',
+								month: 'numeric',
+								day: 'numeric',
+							})}
+						</span>
 					</p>
 					<div className={styles.taskProgress}>
 						<p>

@@ -16,6 +16,7 @@ export type TaskNameInputs =
 export type TaskCard = {
 	id: string
 	title: string
+	startDate: Date
 	priority: TaskPriority
 	difficult: TaskDifficult
 	category: TaskCategory

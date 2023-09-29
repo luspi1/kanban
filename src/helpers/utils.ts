@@ -61,16 +61,10 @@ export const calculateCheckboxesPercent = (checkboxes: CheckboxItem[]) => {
 	return result || 0
 }
 
-export const formatDate = (date: Date) => {
+export const formatDate = (date: Date, options: Intl.DateTimeFormatOptions | undefined) => {
 	if (date) {
 		const newDate = new Date(date)
 
-		return newDate.toLocaleString('ru', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-			hour: 'numeric',
-			minute: 'numeric',
-		})
+		return newDate.toLocaleString('ru', options)
 	}
 }

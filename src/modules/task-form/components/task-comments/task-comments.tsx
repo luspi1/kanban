@@ -51,7 +51,15 @@ export const TaskComments: FC<TaskCommentsProps> = ({ currentTask }) => {
 							<h5>{comment.user.name}</h5>
 							<p>{comment.text}</p>
 						</div>
-						<span>{formatDate(comment?.time)}</span>
+						<span>
+							{formatDate(comment?.time, {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric',
+								hour: 'numeric',
+								minute: 'numeric',
+							})}
+						</span>
 					</li>
 				))}
 			</ul>
