@@ -3,12 +3,7 @@ import { type FC } from 'react'
 import styles from './index.module.scss'
 import { TaskPriorityMap } from 'src/helpers/consts'
 import cnBind from 'classnames/bind'
-import {
-	Draggable,
-	type DraggableStateSnapshot,
-	type DraggingStyle,
-	type NotDraggingStyle,
-} from 'react-beautiful-dnd'
+import { Draggable } from 'react-beautiful-dnd'
 import { type CommentItem, type TaskPriority } from 'src/types/tasks'
 import { useActions } from 'src/hooks/actions/actions'
 import { ExecutorSvg } from 'src/UI/icons/executorSVG'
@@ -43,18 +38,6 @@ export const TaskItem: FC<TaskCardProps> = ({
 	startDate,
 }) => {
 	const { setCurrentTaskId } = useActions()
-	const getStyle = (
-		style: DraggingStyle | NotDraggingStyle | undefined,
-		snapshot: DraggableStateSnapshot
-	) => {
-		if (!snapshot.isDropAnimating) {
-			return style
-		}
-		return {
-			...style,
-			transitionDuration: `0.00000001s`,
-		}
-	}
 
 	const taskClasses = cx('taskCard', priority)
 	return (
@@ -65,7 +48,6 @@ export const TaskItem: FC<TaskCardProps> = ({
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
-					style={getStyle(provided.draggableProps.style, snapshot)}
 					onClick={() => setCurrentTaskId(id)}
 				>
 					<div className={styles.taskTop}>
