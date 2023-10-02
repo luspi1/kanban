@@ -81,11 +81,6 @@ export const tasksApi = createApi({
 			query: (id) => ({
 				url: `/task/${id}`,
 			}),
-			providesTags: () => [
-				{
-					type: 'Tasks',
-				},
-			],
 		}),
 		setTaskItem: build.mutation<null, TaskCard>({
 			query: (task) => ({
@@ -93,11 +88,7 @@ export const tasksApi = createApi({
 				method: 'PUT',
 				body: task,
 			}),
-			invalidatesTags: () => [
-				{
-					type: 'Tasks',
-				},
-			],
+			invalidatesTags: ['Tasks'],
 		}),
 	}),
 })

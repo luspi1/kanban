@@ -58,6 +58,7 @@ const updateColumn = (req, res) => {
 
 const updateAllColumns = (req, res) => {
   const newColumns = req.body;
+
   tracks.map(track => {
     const colLength = track.columns.length;
     const currentCols = newColumns.splice(0, colLength);
