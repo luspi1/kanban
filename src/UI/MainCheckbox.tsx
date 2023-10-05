@@ -8,7 +8,7 @@ export const MainCheckbox: FC<MainCheckboxProps> = ({ title }) => {
 		<div>
 			<label>
 				<input type='checkbox' />
-				<span>{<title></title>}</span>
+				<span>{title}</span>
 			</label>
 		</div>
 	)
