@@ -42,7 +42,7 @@ export const TaskItem: FC<TaskCardProps> = ({
 	const taskClasses = cx('taskCard', priority)
 	return (
 		<Draggable draggableId={id} index={index}>
-			{(provided, snapshot) => (
+			{(provided) => (
 				<div
 					className={taskClasses}
 					ref={provided.innerRef}
@@ -55,16 +55,19 @@ export const TaskItem: FC<TaskCardProps> = ({
 					</div>
 					<h4>{title}</h4>
 					<p className={styles.taskDesc}>{desc}</p>
-					<div className={styles.taskExecutor}>
-						<p>
-							<ExecutorSvg />
-							{executor}
-						</p>
-						<span>
-							<CommentSvg />
-							{comments.length}
-						</span>
-					</div>
+					{executor && (
+						<div className={styles.taskExecutor}>
+							<p>
+								<ExecutorSvg />
+								{executor}
+							</p>
+							<span>
+								<CommentSvg />
+								{comments.length}
+							</span>
+						</div>
+					)}
+
 					<p className={styles.taskDate}>
 						<CalendarSvg />
 						<span>

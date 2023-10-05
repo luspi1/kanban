@@ -53,7 +53,6 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 			difficult: 'common',
 			category: 'testing',
 			checkboxes: [],
-			photos: [],
 		},
 	})
 	const inputNamesArr = Object.keys(getValues()) as TaskNameInputs[]

@@ -93,12 +93,11 @@ const updateTask = (req, res) => {
 
   });
 
-  tracks.splice(0, tracks.length, ...newTracks)
+  tracks.splice(0, tracks.length, ...newTracks);
 
 
   res.status(201).json(tracks);
 };
-
 
 
 const getBoardById = (req, res) => {
@@ -120,6 +119,50 @@ const getTaskById = (req, res) => {
 };
 
 
+const addNewTask = (req, res) => {
+  const { columnId, title } = req.body;
+  const currentDate = new Date();
+  const newTask = {
+    id: String(Date.now()),
+    title,
+    startDate: currentDate,
+    priority: "lower",
+    difficult: "common",
+    category: "programming",
+    desc: "",
+    executor: "",
+    checkboxes: [],
+    photos: [],
+    parentTask: null,
+    dependencyTask: [],
+    comments: []
+  };
+
+  const newTracks = tracks.map(track => {
+    const newTracksArr = track.columns.map(column => {
+      if (column.id === columnId) {
+        return {
+          ...column,
+          tasks: [
+            ...column.tasks,
+            newTask
+          ]
+        };
+      } else {
+        return column;
+      }
+    });
+    return {
+      ...track,
+      columns: newTracksArr
+    };
+  });
+
+  tracks.splice(0, tracks.length, ...newTracks);
+
+  res.status(201).json(newTracks);
+};
+
 app.get("/api/v1/boards/:id/allColumns", getAllColumns);
 app.get("/api/v1/boards/:id/tracks", getAllTracks);
 app.get("/api/v1/boards/:id/titleColumns", getTitleColumns);
@@ -129,6 +172,7 @@ app.put("/api/v1/taskItem/:id", updateTask);
 app.get("/api/v1/allBoards", getAllBoards);
 app.get("/api/v1/boards/:id", getBoardById);
 app.get("/api/v1/task/:id", getTaskById);
+app.post("/api/v1/addTask", addNewTask);
 app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT));
 
 

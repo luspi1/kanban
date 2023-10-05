@@ -91,6 +91,14 @@ export const tasksApi = createApi({
 			}),
 			invalidatesTags: ['Tasks'],
 		}),
+		addTaskItem: build.mutation({
+			query: ({ columnId, title }) => ({
+				url: `addTask`,
+				method: 'POST',
+				body: { columnId, title },
+			}),
+			invalidatesTags: ['Tasks'],
+		}),
 	}),
 })
 
@@ -104,4 +112,5 @@ export const {
 	useGetBoardsQuery,
 	useGetBoardByIdQuery,
 	useGetTaskByIdQuery,
+	useAddTaskItemMutation,
 } = tasksApi

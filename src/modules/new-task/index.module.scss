@@ -1,0 +1,64 @@
+.newTaskWrapper {
+  width: 100%;
+}
+
+.showBtn {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 15px;
+  color: #064AB1;
+  background: transparent;
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+  transition: all .3s;
+
+  svg {
+    margin-right: 5px;
+    width: 17px;
+    height: 17px;
+  }
+
+  &:hover {
+    background: #fff;
+  }
+}
+
+.newTaskForm {
+  textarea {
+    padding: 10px 15px;
+    height: 60px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #fff;
+    transition: all .3s;
+    border: none;
+    margin-bottom: 10px;
+    outline: none;
+  }
+
+}
+
+.closeBtn {
+  margin-left: 15px;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.bottomBtns {
+  align-items: center;
+  display: flex;
+}
+
+.addBtn {
+  color: #ffffff;
+  background-color: #064AB1;
+  padding: 8px 12px;
+  border-radius: 3px;
+}
