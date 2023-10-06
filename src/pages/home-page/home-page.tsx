@@ -10,6 +10,7 @@ import { TopMenu } from 'src/pages/home-page/components/top-menu/top-menu'
 import { TaskForm } from 'src/modules/task-form/task-form'
 import { useAppSelector } from 'src/hooks/store'
 import { getCurrentTaskId } from 'src/modules/task-form/store/task-form.selectors'
+import { ArchiveConfirm } from 'src/pages/home-page/components/archive-confirm/archive-confirm'
 
 export const HomePage: FC = () => {
 	const taskId = useAppSelector(getCurrentTaskId)
@@ -22,6 +23,7 @@ export const HomePage: FC = () => {
 			<TitleColumns />
 			<Tracks />
 			<TaskForm id={taskId} />
+			<ArchiveConfirm />
 		</Container>
 	)
 }

@@ -9,6 +9,7 @@ type TaskFormState = {
 	activityForm: boolean
 	checkboxes: CheckboxItem[] | []
 	photos: FileWithPreview[] | []
+	isActiveArchiveModal: boolean
 }
 
 const initialState: TaskFormState = {
@@ -16,6 +17,7 @@ const initialState: TaskFormState = {
 	activityForm: false,
 	checkboxes: [],
 	photos: [],
+	isActiveArchiveModal: false,
 }
 
 export const taskFormSlice = createSlice({
@@ -63,6 +65,9 @@ export const taskFormSlice = createSlice({
 				Object.assign(file, { preview: URL.createObjectURL(file) })
 			)
 			state.photos = [...state.photos, ...preparedFiles]
+		},
+		toggleArchiveModal: (state, action: PayloadAction<boolean>) => {
+			state.isActiveArchiveModal = action.payload
 		},
 	},
 })

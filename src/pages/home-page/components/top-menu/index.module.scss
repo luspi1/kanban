@@ -40,11 +40,6 @@
 .menuRight {
   display: flex;
   align-items: center;
-  a {
-    font-size: 18px;
-    color: #064AB1;
-    text-decoration: underline;
-  }
 }
 
 .membersList {
@@ -55,9 +50,16 @@
 
   li {
     cursor: pointer;
+
     svg {
       width: 30px;
       height: 30px;
     }
   }
+}
+
+.outBtn {
+  font-size: 18px;
+  color: #064AB1;
+  text-decoration: underline;
 }

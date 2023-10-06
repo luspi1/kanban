@@ -27,7 +27,7 @@ export const CheckboxAdditional: FC = () => {
 			<textarea placeholder='Добавить еще один пункт' ref={addCheckboxBtnRef} />
 			<div className={styles.additionalControllers}>
 				<Button
-					color='#00754A'
+					$color='#00754A'
 					$border='1px solid #00754A'
 					type='button'
 					onClick={addCheckboxHandler}
@@ -35,7 +35,7 @@ export const CheckboxAdditional: FC = () => {
 					Добавить
 				</Button>
 				<Button
-					color='#920303'
+					$color='#920303'
 					$border='1px solid #920303'
 					onClick={() => setIsVisibleAddition(!isVisibleAddition)}
 					type='button'

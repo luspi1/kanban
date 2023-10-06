@@ -29,11 +29,16 @@
   &::-webkit-scrollbar {
     width: 0;
   }
+
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
 }
 
 .active {
   pointer-events: all;
   opacity: 1;
+
   .modalContent {
     transform: scale(1);
   }

@@ -16,12 +16,15 @@ import { move, reorder } from 'src/helpers/utils'
 import { useActions } from 'src/hooks/actions/actions'
 import { getLocaleTracks } from 'src/store/tasks/tasks.selectors'
 import { useAppSelector } from 'src/hooks/store'
+import { POLLING_INTERVAL } from 'src/helpers/consts'
 
 export const Tracks: FC = () => {
 	const { boardId } = useParams()
 
 	const { data: tracks } = useGetTracksQuery(boardId)
-	const { data: allColumns } = useGetColumnsQuery(boardId)
+	const { data: allColumns } = useGetColumnsQuery(boardId, {
+		pollingInterval: POLLING_INTERVAL,
+	})
 	const [reorderColumn] = useReorderColumnMutation()
 	const [setColumns] = useSetColumnsMutation()
 

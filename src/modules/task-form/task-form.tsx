@@ -24,6 +24,7 @@ import { CheckboxList } from 'src/components/checkbox-list/checkbox-list'
 import { TaskDropzone } from 'src/modules/task-form/components/task-dropzone/task-dropzone'
 import { DependentTasks } from 'src/modules/task-form/components/dependent-tasks/dependent-tasks'
 import { TaskComments } from 'src/modules/task-form/components/task-comments/task-comments'
+import { Flex } from 'src/UI/Flex'
 
 type TaskFormProps = {
 	id: string | null
@@ -33,7 +34,7 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 
 	const { data: currentTask } = useGetTaskByIdQuery(id ?? '0')
 	const [setTaskItem] = useSetTaskItemMutation()
-	const { changeActivity, setCheckboxes, setPhotoFiles } = useActions()
+	const { changeActivity, setCheckboxes, setPhotoFiles, toggleArchiveModal } = useActions()
 	const activityForm = useAppSelector(getActivityTaskForm)
 	const photosForm = useAppSelector(getPhotos)
 
@@ -172,16 +173,28 @@ export const TaskForm: FC<TaskFormProps> = ({ id }) => {
 
 			<CheckboxList name='checkboxes' control={control} />
 			<TaskComments currentTask={currentTask} />
-			<Button
-				type='submit'
-				$background='#00754A'
-				color='#ffffff'
-				$border='none'
-				$margin='auto 0 0 0'
-				width='200px'
-			>
-				Сохранить
-			</Button>
+			<Flex $justify='space-between'>
+				<Button
+					type='submit'
+					$background='#00754A'
+					$color='#ffffff'
+					$border='none'
+					$margin='auto 0 0 0'
+					width='200px'
+				>
+					Сохранить
+				</Button>
+				<Button
+					type='button'
+					$color='#ffffff'
+					$background='#FFA011'
+					$border='none'
+					width='200px'
+					onClick={() => toggleArchiveModal(true)}
+				>
+					В архив
+				</Button>
+			</Flex>
 		</form>
 	)
 }

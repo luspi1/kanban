@@ -1,11 +1,12 @@
 import React, { type FC } from 'react'
 import { AppRoute } from 'src/helpers/consts'
-import { Link, useParams } from 'react-router-dom'
+import { generatePath, Link, useParams } from 'react-router-dom'
 
 import styles from './index.module.scss'
 import { useGetBoardByIdQuery } from 'src/store/tasks/tasks.api'
 import { AvatarSvg } from 'src/UI/icons/avatarSVG'
 import { getRandomColor } from 'src/helpers/utils'
+import { Button } from 'src/UI/Button'
 
 export const TopMenu: FC = React.memo(() => {
 	const { boardId } = useParams()
@@ -29,6 +30,11 @@ export const TopMenu: FC = React.memo(() => {
 				</div>
 			</div>
 			<div className={styles.menuRight}>
+				<Link to={generatePath(AppRoute.Archive, { boardId: String(boardId) })}>
+					<Button $margin='0 15px 0 0' $border='1px solid #FFA011' $color='#FFA011'>
+						Архив
+					</Button>
+				</Link>
 				<ul className={styles.membersList}>
 					{boardData.members.map((member) => (
 						<li key={member.id} title={member.name}>
@@ -36,7 +42,9 @@ export const TopMenu: FC = React.memo(() => {
 						</li>
 					))}
 				</ul>
-				<Link to={AppRoute.Boards}>выход</Link>
+				<Link className={styles.outBtn} to={AppRoute.Boards}>
+					выход
+				</Link>
 			</div>
 		</div>
 	)

@@ -4,15 +4,19 @@ import { tasksApi } from 'src/store/tasks/tasks.api'
 import { NameSpace } from 'src/helpers/consts'
 import { tasksReducer } from 'src/store/tasks/tasks.slice'
 import { taskFormReducer } from 'src/modules/task-form/store/task-form.slice'
+import { archiveApi } from 'src/store/archive/archive.api'
 
 export const store = configureStore({
 	reducer: {
 		[tasksApi.reducerPath]: tasksApi.reducer,
+		[archiveApi.reducerPath]: archiveApi.reducer,
 		[NameSpace.Tasks]: tasksReducer,
 		[NameSpace.TaskForm]: taskFormReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({ serializableCheck: false }).concat(tasksApi.middleware),
+		getDefaultMiddleware({ serializableCheck: false })
+			.concat(tasksApi.middleware)
+			.concat(archiveApi.middleware),
 })
 
 setupListeners(store.dispatch)

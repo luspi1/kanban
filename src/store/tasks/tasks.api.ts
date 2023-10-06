@@ -6,6 +6,7 @@ import {
 	type TaskCard,
 	type TrackItem,
 } from 'src/types/tasks'
+import { BASE_URL } from 'src/helpers/consts'
 
 type ColumnsWithId = [BoardId, KanbanColumn[]]
 
@@ -13,12 +14,12 @@ export const tasksApi = createApi({
 	reducerPath: 'tasks/api',
 	tagTypes: ['Tasks'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:4001/api/v1',
+		baseUrl: BASE_URL,
 	}),
 	endpoints: (build) => ({
 		getColumns: build.query<KanbanColumn[], string | undefined>({
 			query: (param) => ({
-				url: `boards/${param ?? '0'}/allColumns`,
+				url: `boards/${param ?? ''}/allColumns`,
 			}),
 			providesTags: () => [
 				{
@@ -28,7 +29,7 @@ export const tasksApi = createApi({
 		}),
 		getTracks: build.query<TrackItem[], string | undefined>({
 			query: (param) => ({
-				url: `boards/${param ?? '0'}/tracks`,
+				url: `boards/${param ?? ''}/tracks`,
 			}),
 			providesTags: () => [
 				{
@@ -38,13 +39,13 @@ export const tasksApi = createApi({
 		}),
 		getTitle: build.query<string[], string | undefined>({
 			query: (param) => ({
-				url: `boards/${param ?? '0'}/titleColumns`,
+				url: `boards/${param ?? ''}/titleColumns`,
 			}),
 		}),
 
 		reorderColumn: build.mutation<null, BoardId & KanbanColumn>({
 			query: ({ boardId, ...column }) => ({
-				url: `boards/${boardId ?? '0'}/columns`,
+				url: `boards/${boardId ?? ''}/columns`,
 				method: 'PUT',
 				body: column,
 			}),
@@ -57,7 +58,7 @@ export const tasksApi = createApi({
 
 		setColumns: build.mutation<null, ColumnsWithId>({
 			query: ([boardId, columns]) => ({
-				url: `boards/${boardId ?? '0'}/updAllCol`,
+				url: `boards/${boardId ?? ''}/updAllCol`,
 				method: 'PUT',
 				body: columns,
 			}),

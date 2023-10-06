@@ -3,6 +3,7 @@ import cors from "cors";
 import { titleColumns } from "./mockData/titleColumns.mjs";
 import { tracks } from "./mockData/tracks.mjs";
 import { boards } from "./mockData/boards.mjs";
+import { archiveTasks } from "./mockData/archive.mjs";
 
 const PORT = 4001;
 const app = express();
@@ -16,6 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
 const getAllTracks = (req, res) => {
   res.status(200).json(tracks);
+};
+const getArchiveTasks = (req, res) => {
+  res.status(200).json(archiveTasks);
 };
 
 const getAllColumns = (req, res) => {
@@ -163,8 +167,40 @@ const addNewTask = (req, res) => {
   res.status(201).json(newTracks);
 };
 
+
+const deleteTask = (req, res) => {
+  const taskId = req.params.id;
+  let searchedTask = {};
+
+  const newTracks = tracks.map(track => {
+    const newTracksArr = track.columns.map(column => {
+      const newColumnsArr = column.tasks.filter(task => {
+        if (task.id === taskId) {
+          searchedTask = task;
+          return false;
+        } else {
+          return true;
+        }
+      });
+      return {
+        ...column,
+        tasks: newColumnsArr
+      };
+    });
+    return {
+      ...track,
+      columns: newTracksArr
+    };
+  });
+  tracks.splice(0, tracks.length, ...newTracks);
+  archiveTasks.push(searchedTask);
+
+  res.status(201).json(newTracks);
+};
+
 app.get("/api/v1/boards/:id/allColumns", getAllColumns);
 app.get("/api/v1/boards/:id/tracks", getAllTracks);
+app.get("/api/v1/boards/:id/archive", getArchiveTasks);
 app.get("/api/v1/boards/:id/titleColumns", getTitleColumns);
 app.put("/api/v1/boards/:id/columns", updateColumn);
 app.put("/api/v1/boards/:id/updAllCol", updateAllColumns);
@@ -173,6 +209,7 @@ app.get("/api/v1/allBoards", getAllBoards);
 app.get("/api/v1/boards/:id", getBoardById);
 app.get("/api/v1/task/:id", getTaskById);
 app.post("/api/v1/addTask", addNewTask);
+app.delete("/api/v1/taskDelete/:id", deleteTask);
 app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT));
 
 
