@@ -12,7 +12,7 @@ type ColumnsWithId = [BoardId, KanbanColumn[]]
 
 export const tasksApi = createApi({
 	reducerPath: 'tasks/api',
-	tagTypes: ['Tasks'],
+	tagTypes: ['Tasks', 'ArchiveTasks'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: BASE_URL,
 	}),

@@ -12,13 +12,11 @@ import 'react-toastify/dist/ReactToastify.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<Provider store={store}>
-		<React.StrictMode>
-			<HelmetProvider>
-				<BrowserRouter>
-					<ToastContainer />
-					<App />
-				</BrowserRouter>
-			</HelmetProvider>
-		</React.StrictMode>
+		<HelmetProvider>
+			<BrowserRouter>
+				<ToastContainer />
+				<App />
+			</BrowserRouter>
+		</HelmetProvider>
 	</Provider>
 )

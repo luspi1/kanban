@@ -198,6 +198,19 @@ const deleteTask = (req, res) => {
   res.status(201).json(newTracks);
 };
 
+const restoreTask = (req, res) => {
+  const restoreTask = req.body;
+
+  const filteredArchiveTasks = archiveTasks.filter(archiveTask => archiveTask.id !== restoreTask.id);
+
+  tracks[0].columns[0].tasks.push(restoreTask);
+  archiveTasks.splice(0, archiveTasks.length, ...filteredArchiveTasks);
+
+  res.status(201).json(restoreTask);
+
+};
+
+
 app.get("/api/v1/boards/:id/allColumns", getAllColumns);
 app.get("/api/v1/boards/:id/tracks", getAllTracks);
 app.get("/api/v1/boards/:id/archive", getArchiveTasks);
@@ -210,6 +223,7 @@ app.get("/api/v1/boards/:id", getBoardById);
 app.get("/api/v1/task/:id", getTaskById);
 app.post("/api/v1/addTask", addNewTask);
 app.delete("/api/v1/taskDelete/:id", deleteTask);
+app.post("/api/v1/taskRestore", restoreTask);
 app.listen(PORT, () => console.log("SERVER STARTED ON PORT " + PORT));
 
 

@@ -1,13 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { type TaskCard } from 'src/types/tasks'
-import { BASE_URL } from 'src/helpers/consts'
+import { tasksApi } from 'src/store/tasks/tasks.api'
 
-export const archiveApi = createApi({
-	reducerPath: 'archive/api',
-	tagTypes: ['ArchiveTasks'],
-	baseQuery: fetchBaseQuery({
-		baseUrl: BASE_URL,
-	}),
+export const archiveApi = tasksApi.injectEndpoints({
 	endpoints: (build) => ({
 		getArchiveByBoardId: build.query<TaskCard[], string | undefined>({
 			query: (param) => ({
@@ -20,9 +14,18 @@ export const archiveApi = createApi({
 				url: `taskDelete/${taskId ?? ''}`,
 				method: 'DELETE',
 			}),
-			invalidatesTags: () => ['ArchiveTasks'],
+			invalidatesTags: () => ['Tasks', 'ArchiveTasks'],
+		}),
+		restoreTask: build.mutation<null, TaskCard>({
+			query: (task) => ({
+				url: `taskRestore`,
+				method: 'POST',
+				body: task,
+			}),
+			invalidatesTags: () => ['Tasks', 'ArchiveTasks'],
 		}),
 	}),
 })
 
-export const { useGetArchiveByBoardIdQuery, useDeleteTaskByIdMutation } = archiveApi
+export const { useGetArchiveByBoardIdQuery, useDeleteTaskByIdMutation, useRestoreTaskMutation } =
+	archiveApi
